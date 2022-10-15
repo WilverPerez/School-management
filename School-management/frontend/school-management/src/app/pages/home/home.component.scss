@@ -1,31 +1,5 @@
 #container-parent {
     height: 100vh;
-
-    & #container {
-
-        & #assignement-parent {
-            background-color: #eefcef;
-
-            & label {
-                color: #30a139;
-            }
-        }
-
-        & #student-parent {
-            background-color: #e6f5fa;
-
-            & label {
-                color: #006c90;
-            }
-        }
-
-        & tr {
-            margin-left: 12px;
-            margin-right: 12px;
-            background-color: #ffffffab;
-            border-radius: 5em;
-        }
-    }
 }
 
 
