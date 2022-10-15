@@ -2,3 +2,40 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+.font-weight-bold {
+    font-weight: 700;
+}
+
+.font-size-large {
+    font-size: large;
+}
+
+.pointer-none {
+    pointer-events: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.circle {
+    border-radius: 100%;
+}
+
+.avatar {
+    width: 3em;
+    height: 3em;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: thin solid;
+}
+
+.th-avatar {
+    width: 5em;
+}

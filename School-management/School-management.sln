@@ -5,6 +5,10 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "School-management", "School-management.csproj", "{40F0CA84-D7CC-4AA2-A4D7-7637C49AE5DB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployables", "deployables", "{EDE7B78C-1AC8-4F05-87BD-38F4DF9A6133}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cs", "cs", "{DC84E521-32A8-42F8-B25E-0D813208383E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +22,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{40F0CA84-D7CC-4AA2-A4D7-7637C49AE5DB} = {DC84E521-32A8-42F8-B25E-0D813208383E}
+		{DC84E521-32A8-42F8-B25E-0D813208383E} = {EDE7B78C-1AC8-4F05-87BD-38F4DF9A6133}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1943D0AB-FB42-422C-B353-C622B65321F6}
