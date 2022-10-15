@@ -2,9 +2,16 @@ ul {
     list-style: none;
     color: #424242;
     cursor: pointer;
-    
+
     & li {
         &:hover {
+            background: #e6f5fa;
+            color: #006c90 !important;
+            font-weight: 700;
+            border: thin solid;
+        }
+
+        &.active {
             background: #e6f5fa;
             color: #006c90 !important;
             font-weight: 700;
