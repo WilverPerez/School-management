@@ -5,24 +5,9 @@
       <label class="h4">Some name</label>
     </div>
 
-    <li class="active py-2 w-100 d-flex justify-content-center align-items-center">
-      <ion-icon name="home-outline" class="h4 m-0 pointer-none"></ion-icon>
-      <label class="m-0 mx-3 pointer-none">Inicio</label>
-    </li>
-
-    <li class="py-2 w-100 d-flex justify-content-center align-items-center">
-      <ion-icon name="school-outline" class="h4 m-0 pointer-none"></ion-icon>
-      <label class="m-0 mx-3 pointer-none">Cursos</label>
-    </li>
-
-    <li class="py-2 w-100 d-flex justify-content-center align-items-center">
-      <ion-icon name="book-outline" class="h4 m-0 pointer-none"></ion-icon>
-      <label class="m-0 mx-3 pointer-none">Asignaturas</label>
-    </li>
-
-    <li class="py-2 w-100 d-flex justify-content-center align-items-center">
-      <ion-icon name="people-outline" class="h4 m-0 pointer-none"></ion-icon>
-      <label class="m-0 mx-3 pointer-none">Estudiantes</label>
+    <li *ngFor="let option of sidebarOptions" [class.active]="option.actived" (click)="navigate(option)" class="py-2 w-100 d-flex justify-content-center align-items-center">
+      <ion-icon [name]="option.icon" class="h4 m-0 pointer-none"></ion-icon>
+      <label class="m-0 mx-3 pointer-none">{{option.label}}</label>
     </li>
 
   </ul>
