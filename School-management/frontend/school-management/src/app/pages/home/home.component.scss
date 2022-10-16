@@ -12,6 +12,10 @@
         display: none;
     }
 
+    .fc-daygrid-body.fc-daygrid-body-unbalanced table {
+        height: 43px !important;
+    } 
+
     .fc-scrollgrid {
         & .fc-col-header-cell,
         .fc-daygrid-day {

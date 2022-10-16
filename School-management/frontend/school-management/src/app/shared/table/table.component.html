@@ -4,7 +4,8 @@
     <div class="col-3 search d-flex justify-content-center align-items-center
       position-relative">
       <ion-icon name="search-outline" class="search-icon h5 position-absolute"></ion-icon>
-      <input class="form-control" type="text" placeholder="Buscar..."
+      <input (keyup)="filter()" [(ngModel)]="search" class="form-control"
+        type="text" placeholder="Buscar..."
         aria-label="Buscar...">
     </div>
   </div>
@@ -16,9 +17,9 @@
     </thead>
 
     <tbody>
-      <tr class="my-3" *ngFor="let row of configuration.data">
+      <tr class="my-3" *ngFor="let row of data">
         <td class="text-center pt-2">
-          <ion-icon [name]="configuration.icon" class="h2"></ion-icon>
+          <ion-icon [name]="configuration.icon" class="h2 pointer-none"></ion-icon>
         </td>
         <td *ngFor="let col of configuration.headers; let index">
           <label class="mt-2" [class.font-weight-bold]="col.primary">{{col.value(row)}}</label>
@@ -42,14 +43,9 @@
         </li>
 
         <li *ngFor="let page of pages; let index" class="page-item active">
-
           <a class="page-link" href="#">{{index}}</a>
         </li>
-        <!-- <li class="page-item active" aria-current="page">
-          <span class="page-link">2</span>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-         -->
+        
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
