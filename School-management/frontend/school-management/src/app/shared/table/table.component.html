@@ -11,7 +11,7 @@
   </div>
 
   <div class="col col-12 d-flex justify-content-end align-items-center">
-    <div [routerLink]="['detail']" routerLinkActive="router-link-active"  class="d-flex justify-content-end align-items-center mx-3 add-new px-2 rounded">
+    <div [routerLink]="['create']" routerLinkActive="router-link-active"  class="d-flex justify-content-end align-items-center mx-3 add-new px-2 rounded">
       <ion-icon name="add-circle" class="h3 text-primary m-0 mt-1 pointer-none"></ion-icon>
       <a href="" class="text-decoration-none pointer-none">Agregar nuevo</a>
     </div>
@@ -32,7 +32,7 @@
           <label class="mt-2" [class.font-weight-bold]="col.primary">{{col.value(row)}}</label>
         </td>
         <td class="text-center pt-3">
-          <ion-icon name="eye-outline" class="h3 text-primary"></ion-icon>
+          <ion-icon name="eye-outline" [routerLink]="['detail']" routerLinkActive="router-link-active"  class="h3 text-primary"></ion-icon>
           <ion-icon name="create-outline" class="h3 mx-1 text-success"></ion-icon>
           <ion-icon name="trash-outline" class="h3 text-danger"></ion-icon>
         </td>

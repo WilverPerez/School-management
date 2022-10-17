@@ -4,11 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AssignementListComponent } from '../components/assignement-list/assignement-list.component';
-import { StudentListComponent } from '../components/student-list/student-list.component';
+import { AssignementListComponent } from './assignement-list/assignement-list.component';
+import { StudentListComponent } from './student-list/student-list.component';
 import { CardComponent } from './card/card.component';
 import { LayoutComponent } from './layout/layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SwitchListComponent } from './switch-list/switch-list.component';
 import { TableComponent } from './table/table.component';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { TableComponent } from './table/table.component';
     CardComponent,
     TableComponent,
     AssignementListComponent,
-    StudentListComponent
+    StudentListComponent,
+    SwitchListComponent
   ],
   imports: [
     NgbModule,
@@ -34,7 +36,8 @@ import { TableComponent } from './table/table.component';
     CardComponent,
     TableComponent,
     AssignementListComponent,
-    StudentListComponent
+    StudentListComponent,
+    SwitchListComponent
   ],
   providers: [],
   bootstrap: [],

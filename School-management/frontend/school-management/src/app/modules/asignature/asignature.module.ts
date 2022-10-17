@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AsignatureRoutesModule, components } from './asignature.routing';
 
@@ -9,6 +9,7 @@ import { AsignatureRoutesModule, components } from './asignature.routing';
     SharedModule,
     AsignatureRoutesModule
   ],
-  declarations: [...components]
+  declarations: [...components],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AsignatureModule { }

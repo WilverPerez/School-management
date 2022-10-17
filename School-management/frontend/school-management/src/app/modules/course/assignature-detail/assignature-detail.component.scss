@@ -1,0 +1,29 @@
+#container-parent {
+    height: 70vh;
+}
+
+.calendar {
+    height: 330px;
+}
+* {
+    color: #424242;
+}
+
+::ng-deep {
+    .fc-scrollgrid {
+        a {
+            text-decoration: none;
+        }
+        & .fc-daygrid-day.fc-day-today {
+            background-color: var(--bs-primary) !important;
+            color: white !important;
+            & .fc-daygrid-day-top {
+                color: white !important;
+            }
+
+            a {
+                color: white !important;
+            }
+        }
+    }
+}

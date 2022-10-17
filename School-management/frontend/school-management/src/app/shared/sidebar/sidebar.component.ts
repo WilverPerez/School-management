@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
       path: 'assignature'
     },
     {
-      label: 'Estudiantes',
+      label: 'Alumnos',
       actived: false,
       icon: 'people-outline',
       path: 'student'

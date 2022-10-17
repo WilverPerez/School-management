@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from 'src/app/models/course.model';
 import { TableConfiguration } from 'src/app/models/table-configuration.model';
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.scss']
+  selector: 'app-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.scss']
 })
-export class StudentComponent implements OnInit {
+export class DetailComponent implements OnInit {
 
   configuration: TableConfiguration<any> = {
     title: 'Alumnos',
@@ -45,9 +44,8 @@ export class StudentComponent implements OnInit {
       }
     ]
   }
-
-  constructor() {
-  }
+  
+  constructor() { }
 
   ngOnInit() {
   }

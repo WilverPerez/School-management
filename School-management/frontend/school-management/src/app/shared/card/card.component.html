@@ -1,21 +1,25 @@
- <div *ngIf="!add; else createDesign" [class]="colors[index]" class="card rounded col col-12 m-3 p-3 d-flex justify-content-evenly align-items-center flex-row shadow-sm">
-    <div id="image" class="pointer-none">
-      <ion-icon name="school"></ion-icon>
-    </div>
-    <div class="title d-flex flex-column pointer-none">
-      <label class="font-weight-bold h5">Curso</label>
-      <label class="font-size-large font-weight-bold">1ro A</label>
-      <small class="muted">Lun - Vie</small>
-    </div>
+ <div *ngIf="!add; else createDesign" [class]="colors[index]" class="card rounded
+  col col-12 m-3 p-3 d-flex justify-content-evenly align-items-center flex-row
+  shadow-sm" [routerLink]="['/course/detail']">
+  <div id="image" class="pointer-none">
+    <ion-icon name="school"></ion-icon>
+  </div>
+  <div class="title d-flex flex-column pointer-none">
+    <label class="font-weight-bold h5">Curso</label>
+    <label class="font-size-large font-weight-bold">1ro A</label>
+    <small class="muted">Lun - Vie</small>
+  </div>
 </div>
 
 <ng-template #createDesign>
-  <div class="card-create card rounded col col-12 m-3 p-3 d-flex justify-content-evenly align-items-center flex-row shadow-sm">
+  <div [routerLink]="['/course/create']" routerLinkActive="router-link-active"
+    class="card-create card rounded col col-12 m-3 p-3 d-flex
+    justify-content-evenly align-items-center flex-row shadow-sm">
     <div id="image" class="pointer-none">
       <ion-icon name="add-circle-outline"></ion-icon>
     </div>
     <div class="title pointer-none">
       <label class="font-weight-bold h5">Add new</label>
     </div>
-</div>
+  </div>
 </ng-template>
