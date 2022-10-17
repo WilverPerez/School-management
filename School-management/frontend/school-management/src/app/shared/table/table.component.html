@@ -10,6 +10,13 @@
     </div>
   </div>
 
+  <div class="col col-12 d-flex justify-content-end align-items-center">
+    <div [routerLink]="['detail']" routerLinkActive="router-link-active"  class="d-flex justify-content-end align-items-center mx-3 add-new px-2 rounded">
+      <ion-icon name="add-circle" class="h3 text-primary m-0 mt-1 pointer-none"></ion-icon>
+      <a href="" class="text-decoration-none pointer-none">Agregar nuevo</a>
+    </div>
+  </div>
+
   <table class="table table-hover">
     <thead>
       <th class="th-avatar"></th>
@@ -45,7 +52,7 @@
         <li *ngFor="let page of pages; let index" class="page-item active">
           <a class="page-link" href="#">{{index}}</a>
         </li>
-        
+
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>

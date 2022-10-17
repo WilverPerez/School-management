@@ -7,6 +7,15 @@
     color: #424242;
 }
 
+.add-new {
+    cursor: pointer;
+    border: thin solid rgba(var(--bs-primary-rgb));
+
+    &:hover {
+        border: thin solid;
+    }
+}
+
 ::ng-deep {
     ion-icon {
         cursor: pointer;

@@ -26,9 +26,7 @@ const routes: Routes = [
 
 export const components = [
   AppComponent,
-  HomeComponent,
-  AssignementListComponent,
-  StudentListComponent
+  HomeComponent
 ]
 
 @NgModule({
