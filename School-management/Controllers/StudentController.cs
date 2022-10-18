@@ -1,3 +1,4 @@
+using Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace School_management.Controllers
@@ -7,10 +8,12 @@ namespace School_management.Controllers
     public class StudentController : ControllerBase
     {
         private readonly ILogger<StudentController> _logger;
+        private readonly IStudentRepository _studentRepository;
 
-        public StudentController(ILogger<StudentController> logger)
+        public StudentController(ILogger<StudentController> logger, IStudentRepository studentRepository)
         {
             _logger = logger;
+            _studentRepository = studentRepository;
         }
 
         [HttpPost]
@@ -23,7 +26,7 @@ namespace School_management.Controllers
                                                                    .WithDateOfBorn(DateTime.Now)
                                                                    .Build();
 
-            student.Persist();
+            student.Persist(_studentRepository);
 
             return Ok(student);
         }

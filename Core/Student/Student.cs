@@ -1,4 +1,6 @@
-﻿namespace Core.Student
+﻿using Core.Contracts;
+
+namespace Core.Student
 {
     /// <summary>
     /// Represent the student entity logic manager
@@ -56,9 +58,9 @@
 
         #endregion
 
-        public void Persist()
+        public void Persist(IStudentRepository studentRepository)
         {
-
+            studentRepository.Persist(this);
         }
 
         /// <summary>
