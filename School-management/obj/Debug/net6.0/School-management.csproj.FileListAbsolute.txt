@@ -31,3 +31,5 @@ D:\My projects\School-management\School-management\obj\Debug\net6.0\refint\Schoo
 D:\My projects\School-management\School-management\obj\Debug\net6.0\School-management.pdb
 D:\My projects\School-management\School-management\obj\Debug\net6.0\School-management.genruntimeconfig.cache
 D:\My projects\School-management\School-management\obj\Debug\net6.0\ref\School-management.dll
+D:\My projects\School-management\School-management\bin\Debug\net6.0\Core.dll
+D:\My projects\School-management\School-management\bin\Debug\net6.0\Core.pdb
