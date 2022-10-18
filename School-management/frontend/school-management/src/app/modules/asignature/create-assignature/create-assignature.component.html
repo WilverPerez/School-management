@@ -1,0 +1,28 @@
+<div class="col col-12 mt-3">
+  <div class="header">
+    <label for="" class="h4">Asignaturas > <label for="" class="h5">Crear nueva asignatura</label></label>
+  </div>
+
+  <div class="body border rounded mb-3">
+    <form action="">
+      <div class="form-group col col-12 py-4 px-2">
+        <label for="" class="form-label h5">Title</label>
+        <input type="text" class="form-control" placeholder="Title">
+      </div>
+
+      <div id="parent-container" class="col col-12 row p-0 m-0 d-flex justify-content-between align-items-start flex-row pb-3">
+        <div class="col col-6 h-100">
+          <app-switch-list [configuration]="assignatureConfiguration"></app-switch-list>
+        </div>
+      </div>
+
+      <div class="col col-12 d-flex justify-content-end align-items-center pt-2 px-3 pb-3">
+        <button class="btn btn-primary border rounded m-0 px-1 d-flex justify-content-center align-items-center">
+          <ion-icon name="add-circle-outline" class="h3 m-0 pointer-none"></ion-icon>
+          <label for="" class="px-2 pointer-none">Agregar asignatura</label>
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

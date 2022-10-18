@@ -1,0 +1,12 @@
+D:\My projects\School-management\Persistence\bin\Debug\net6.0\Persistence.deps.json
+D:\My projects\School-management\Persistence\bin\Debug\net6.0\Persistence.dll
+D:\My projects\School-management\Persistence\bin\Debug\net6.0\Persistence.pdb
+D:\My projects\School-management\Persistence\obj\Debug\net6.0\Persistence.csproj.AssemblyReference.cache
+D:\My projects\School-management\Persistence\obj\Debug\net6.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+D:\My projects\School-management\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfoInputs.cache
+D:\My projects\School-management\Persistence\obj\Debug\net6.0\Persistence.AssemblyInfo.cs
+D:\My projects\School-management\Persistence\obj\Debug\net6.0\Persistence.csproj.CoreCompileInputs.cache
+D:\My projects\School-management\Persistence\obj\Debug\net6.0\Persistence.dll
+D:\My projects\School-management\Persistence\obj\Debug\net6.0\refint\Persistence.dll
+D:\My projects\School-management\Persistence\obj\Debug\net6.0\Persistence.pdb
+D:\My projects\School-management\Persistence\obj\Debug\net6.0\ref\Persistence.dll

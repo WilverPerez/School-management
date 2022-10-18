@@ -1,0 +1,64 @@
+<div class="w-100 mx-2 rounded h-100 overflow-auto">
+  <div class="header d-flex justify-content-between align-items-center py-3">
+    <label class="h5 mb-0 px-3 pb-3">{{configuration.title}}</label>
+    <div class="col-3 search d-flex justify-content-center align-items-center
+      position-relative">
+      <ion-icon name="search-outline" class="search-icon h5 position-absolute"></ion-icon>
+      <input (keyup)="filter()" [(ngModel)]="search" class="form-control"
+        type="text" placeholder="Buscar..."
+        aria-label="Buscar...">
+    </div>
+  </div>
+
+  <div class="col col-12 d-flex justify-content-end align-items-center">
+    <div [routerLink]="['create']" routerLinkActive="router-link-active"  class="d-flex justify-content-end align-items-center mx-3 add-new px-2 rounded">
+      <ion-icon name="add-circle" class="h3 text-primary m-0 mt-1 pointer-none"></ion-icon>
+      <a href="" class="text-decoration-none pointer-none">Agregar nuevo</a>
+    </div>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <th class="th-avatar"></th>
+      <th *ngFor="let thead of configuration.headers"></th>
+    </thead>
+
+    <tbody>
+      <tr class="my-3" *ngFor="let row of data">
+        <td class="text-center pt-2">
+          <ion-icon [name]="configuration.icon" class="h2 pointer-none"></ion-icon>
+        </td>
+        <td *ngFor="let col of configuration.headers; let index">
+          <label class="mt-2" [class.font-weight-bold]="col.primary">{{col.value(row)}}</label>
+        </td>
+        <td class="text-center pt-3">
+          <ion-icon name="eye-outline" [routerLink]="['detail']" routerLinkActive="router-link-active"  class="h3 text-primary"></ion-icon>
+          <ion-icon name="create-outline" class="h3 mx-1 text-success"></ion-icon>
+          <ion-icon name="trash-outline" class="h3 text-danger"></ion-icon>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <div class="col col-12 d-flex justify-content-end align-items-center">
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        <li *ngFor="let page of pages; let index" class="page-item active">
+          <a class="page-link" href="#">{{index}}</a>
+        </li>
+
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

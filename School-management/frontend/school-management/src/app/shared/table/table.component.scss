@@ -1,0 +1,39 @@
+.search-icon {
+    right: 14px;
+    top: 4px;
+}
+
+* {
+    color: #424242;
+}
+
+.add-new {
+    cursor: pointer;
+    border: thin solid rgba(var(--bs-primary-rgb));
+
+    &:hover {
+        border: thin solid;
+    }
+}
+
+::ng-deep {
+    ion-icon {
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 100%;
+        &.text-primary:hover {
+            background-color: rgba(var(--bs-primary-rgb));
+            color: white !important;
+        }
+        
+        &.text-danger:hover {
+            background-color: rgba(var(--bs-danger-rgb));
+            color: white !important;
+        }
+        
+        &.text-success:hover {
+            background-color: rgba(var(--bs-success-rgb));
+            color: white !important;
+        }
+    }
+}

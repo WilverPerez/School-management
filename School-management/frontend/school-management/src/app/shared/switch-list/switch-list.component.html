@@ -1,0 +1,11 @@
+<div *ngIf="configuration" class="col col-12 border rounded px-3 mb-3">
+  <label for="" class="h5 mt-2">{{configuration.title}}</label>
+
+  <div class="overflow-auto">
+    <div *ngFor="let item of configuration.data" class="form-check form-switch m-2 py-2 border rounded">
+      <input class="form-check-input" type="checkbox" [id]="item.id" [checked]="item.checked">
+      <label class="form-check-label" [for]="item.id">{{item.label}}</label>
+    </div>
+  </div>
+
+</div>

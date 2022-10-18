@@ -1,0 +1,36 @@
+.card {
+    transform: scale(1);
+    transition: ease .15s;
+    border: none;
+    width: 12em;
+    height: 6em;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.07);
+        border: thin solid;
+    }
+
+    &.blue {
+        background-color: #98e9ff5a;
+        color: #0098c4 !important;
+    }
+
+    &.purple {
+        background-color: #e5e1ff;
+        color: #887bc8 !important;
+    }
+
+    &.gray {
+        background-color: #fbfbfb;
+        color: #424242 !important;
+    }
+
+    &.card-create {
+        border: thin dashed ;
+    }
+
+    & #image {
+        font-size: 2.1em;
+    }
+}

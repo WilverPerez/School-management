@@ -1,0 +1,14 @@
+<div class="col col-12 p-0">
+  <ul class="col col-12 p-0 m-0">
+
+    <div class="text-center mb-3 mt-2">
+      <label class="h4">Some name</label>
+    </div>
+
+    <li *ngFor="let option of sidebarOptions" [class.active]="option.actived" (click)="navigate(option)" class="py-2 w-100 d-flex justify-content-center align-items-center">
+      <ion-icon [name]="option.icon" class="h4 m-0 pointer-none"></ion-icon>
+      <label class="m-0 mx-3 pointer-none">{{option.label}}</label>
+    </li>
+
+  </ul>
+</div>

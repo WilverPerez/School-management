@@ -1,0 +1,89 @@
+#container-parent {
+    height: 100vh;
+}
+
+* {
+    color: #424242;
+}
+
+::ng-deep {
+    .fc-day-disabled {
+        display: none;
+    }
+
+    .fc-daygrid-body.fc-daygrid-body-unbalanced table {
+        height: 43px !important;
+    } 
+
+    .fc-scrollgrid {
+        & .fc-col-header-cell,
+        .fc-daygrid-day {
+            border: none !important;
+        }
+
+        & .fc-daygrid-day-events {
+            display: none;
+        }
+
+        & .fc-daygrid-day-top {
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            width: 104px;
+        }
+
+        & .fc-daygrid-day-frame {
+            border-top: none;
+            border-bottom-left-radius: 1em;
+            border-bottom-right-radius: 1em;
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+        }
+
+        & .fc-scrollgrid-sync-inner:not(.fc-daygrid-day-frame) {
+            border-bottom: none;
+            border-top-left-radius: 1em;
+            border-top-right-radius: 1em;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        & .fc-daygrid-day-number,
+        .fc-col-header-cell-cushion {
+            text-decoration: none;
+            color: #887bc8;
+            width: 104px;
+            text-align: center;
+        }
+
+        & .fc-daygrid-day-number:not(.fc-col-header-cell-cushion) {
+            border-bottom-left-radius: 2em;
+            border-bottom-right-radius: 2em;
+
+            &:hover {
+                background-color: #887bc8;
+                cursor: pointer;
+                color: white;
+            }
+        }
+
+        .fc-col-header-cell-cushion:not(.fc-daygrid-day-number) {
+            background-color: #e5e1ff;
+        }
+
+        & .fc-daygrid-day.fc-day-today {
+            background-color: transparent !important;
+
+            & .fc-daygrid-day-top {
+                background-color: #e5e1ff !important;
+                border-bottom-left-radius: 2em;
+                border-bottom-right-radius: 2em;
+            }
+        }
+    }
+}
