@@ -1,7 +1,7 @@
 ﻿namespace School_management.Models
 {
     /// <summary>
-    /// Represent the schedule table into db
+    /// Represent the schedule view model
     /// </summary>
     public sealed class ScheduleModel
     {

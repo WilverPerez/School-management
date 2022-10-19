@@ -9,6 +9,7 @@ namespace Persistence.Repositories
     public sealed class StudentRepository : IStudentRepository
     {
         private readonly SqlContext _context;
+
         /// <summary>
         /// Implement an instance of <see cref="StudentRepository"/>
         /// </summary>
@@ -21,6 +22,14 @@ namespace Persistence.Repositories
         async Task IStudentRepository.Persist(Student student)
         {
             await _context.SaveChangesAsync();
+        }
+
+        /// <inheritdoc/>
+        IEnumerable<Student> IStudentRepository.GetAll()
+        {
+            IEnumerable<Models.Student> students = _context.Student;
+
+            return students.Select(student => student.ToEntity());
         }
     }
 }

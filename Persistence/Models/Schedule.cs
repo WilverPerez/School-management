@@ -17,7 +17,7 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the schedule's name
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Represent the schedule's creation date
@@ -27,7 +27,7 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the schedule's courses
         /// </summary>
-        public IEnumerable<Course> Courses { get; set; }
+        public IEnumerable<Course> Courses { get; set; } = Enumerable.Empty<Course>();
 
         /// <summary>
         /// Map the entity db to entity core

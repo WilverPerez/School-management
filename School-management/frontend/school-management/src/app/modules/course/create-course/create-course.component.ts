@@ -88,7 +88,7 @@ export class CreateCourseComponent implements OnInit {
           checked: false
         }
       })
-    })
+    });
   }
 
 }

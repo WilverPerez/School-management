@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Schedule } from '../models/schedule.model';
+import { SwitchData } from '../models/switch-configuration.model';
 
 @Injectable({
   providedIn: 'root'

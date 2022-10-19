@@ -17,12 +17,12 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the student's name
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// Represent the student's last name
         /// </summary>
-        public string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         /// <summary>
         /// Represent the student's date
@@ -32,7 +32,7 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the student's parent
         /// </summary>
-        public Parent Parent { get; set; }
+        public Parent Parent { get; set; } = new Parent();
 
         /// <summary>
         /// Represent the student's creation date
@@ -42,12 +42,12 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the student's courses
         /// </summary>
-        public IEnumerable<Course> Courses { get; set; }
+        public IEnumerable<Course> Courses { get; set; } = Enumerable.Empty<Course>();
 
         /// <summary>
         /// Represent the student's assignatures
         /// </summary>
-        public IEnumerable<Assignature> Assignatures { get; set; }
+        public IEnumerable<Assignature> Assignatures { get; set; } = Enumerable.Empty<Assignature>();
 
         /// <summary>
         /// Represent the student's assistances
@@ -58,5 +58,22 @@ namespace Persistence.Models
         /// Represent the student's scores
         /// </summary>
         //public IEnumerable<Score> Scores { get; set; }
+
+
+        /// <summary>
+        /// Map the entity db to entity core
+        /// </summary>
+        /// <returns>An instance of <see cref="Core.Student.Student"/></returns>
+        internal Core.Student.Student ToEntity()
+        {
+            Core.Student.Student student = new Core.Student.Student.Builder()
+                                                                   .WithId(Id)
+                                                                   .WithName(Name)
+                                                                   .WithCourses(Courses.Select(course => course.ToEntity()))
+                                                                   .WithAssignatures(Assignatures.Select(assignature => assignature.ToEntity()))
+                                                                   //.WithParent(Parent.ToEntity())
+                                                                   .Build();
+            return student;
+        }
     }
 }

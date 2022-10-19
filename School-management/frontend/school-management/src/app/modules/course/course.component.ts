@@ -31,32 +31,7 @@ export class CourseComponent implements OnInit {
         value: (item) => item.asignatureCount + ' Asignatures'
       }
     ],
-    data: [
-      {
-        name: '2do B',
-        schedule: 'Lun - Jue',
-        studentCount: 20,
-        asignatureCount: 4
-      },
-      {
-        name: '2do A',
-        schedule: 'Lun ',
-        studentCount: 2,
-        asignatureCount: 1
-      },
-      {
-        name: '2do B',
-        schedule: 'Lun - Jue',
-        studentCount: 20,
-        asignatureCount: 4
-      },
-      {
-        name: '2do B',
-        schedule: 'Lun - Jue',
-        studentCount: 20,
-        asignatureCount: 4
-      }
-    ]
+    data: []
   }
   
   constructor() { }

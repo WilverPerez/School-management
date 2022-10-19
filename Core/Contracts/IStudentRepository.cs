@@ -10,5 +10,10 @@
         /// </summary>
         /// <param name="student"></param>
         public Task Persist(Student.Student student);
+
+        /// <summary>
+        /// Get all students
+        /// </summary>
+        public IEnumerable<Student.Student> GetAll();
     }
 }

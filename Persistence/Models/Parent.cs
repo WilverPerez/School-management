@@ -48,5 +48,21 @@ namespace Persistence.Models
         /// Represent the parent's creation date
         /// </summary>
         public IEnumerable<Student> Students { get; set; }
+
+        /// <summary>
+        /// Map the entity db to entity core
+        /// </summary>
+        /// <returns>An instance of <see cref="Core.Student.Student"/></returns>
+        //internal Core.Student.Student ToEntity()
+        //{
+        //    Core.Student.Student student = new Core.Student.Student.Builder()
+        //                                                           .WithId(Id)
+        //                                                           .WithName(Name)
+        //                                                           .WithCourses(Courses.Select(course => course.ToEntity()))
+        //                                                           .WithAssignatures(Assignatures.Select(assignature => assignature.ToEntity()))
+        //                                                           .WithParent(Parent.ToEntity())
+        //                                                           .Build();
+        //    return student;
+        //}
     }
 }

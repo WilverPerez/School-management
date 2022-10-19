@@ -8,7 +8,6 @@
         /// <summary>
         /// Get all schedules
         /// </summary>
-        /// <param name="schedule"></param>
         public IEnumerable<Schedule.Schedule> GetAll();
     }
 }
