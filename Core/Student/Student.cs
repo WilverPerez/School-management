@@ -67,7 +67,6 @@ namespace Core.Student
         /// Class to build an <see cref="Student"/> instance
         /// </summary>
         public class Builder {
-
             internal Guid IdOption { get; set; }
             internal string NameOption { get; set; } = string.Empty;
             internal string LastNameOption { get; set; } = string.Empty;

@@ -28,27 +28,27 @@ namespace Persistence
         /// <summary>
         /// Set the student's table
         /// </summary>
-        public DbSet<Student> Student { get; }
+        public DbSet<Student> Student { get; set; }
 
         /// <summary>
         /// Set the parent's table
         /// </summary>
-        public DbSet<Parent> Parent { get; }
+        public DbSet<Parent> Parent { get; set; }
 
         /// <summary>
         /// Set the course's table
         /// </summary>
-        public DbSet<Course> Course { get; }
+        public DbSet<Course> Course { get; set; }
 
         /// <summary>
         /// Set the assignature's table
         /// </summary>
-        public DbSet<Assignature> Assignature { get; }
+        public DbSet<Assignature> Assignature { get; set; }
 
         /// <summary>
         /// Set the schedule's table
         /// </summary>
-        public DbSet<Schedule> Schedule { get; }
+        public DbSet<Schedule> Schedule { get; set; }
 
     }
 }

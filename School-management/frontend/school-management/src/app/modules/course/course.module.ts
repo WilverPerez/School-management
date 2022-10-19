@@ -17,6 +17,6 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule
   ],
   declarations: [...components],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CourseModule { }

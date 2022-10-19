@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Contracts
+﻿namespace Core.Contracts
 {
     /// <summary>
     /// Represent the interface for <see cref="Student.Student"/> implementation into db

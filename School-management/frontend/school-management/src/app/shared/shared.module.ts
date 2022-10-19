@@ -11,6 +11,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SwitchListComponent } from './switch-list/switch-list.component';
 import { TableComponent } from './table/table.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TableComponent } from './table/table.component';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   exports: [
     SidebarComponent,

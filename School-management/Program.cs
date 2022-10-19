@@ -18,6 +18,7 @@ builder.Services.AddSwaggerGen();
 void AddServices()
 {
     builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+    builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 }
 
 // Inject context
@@ -33,6 +34,19 @@ void AddDbContexts()
 AddServices();
 AddDbContexts();
 
+void AddCors()
+{
+    builder.Services.AddCors(c
+        => c.AddDefaultPolicy(builder
+            => builder
+                .SetIsOriginAllowed(core => true)
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()));
+}
+
+AddCors();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,5 +61,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();
