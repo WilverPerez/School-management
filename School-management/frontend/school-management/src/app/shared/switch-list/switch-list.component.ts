@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { SwitchConfiguration } from 'src/app/models/switch-configuration.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SwitchConfiguration, SwitchData } from 'src/app/models/switch-configuration.model';
 
 @Component({
   selector: 'app-switch-list',
@@ -9,19 +9,15 @@ import { SwitchConfiguration } from 'src/app/models/switch-configuration.model';
 export class SwitchListComponent implements OnInit {
 
   @Input() configuration!: SwitchConfiguration<any>;
+  @Output() onSelected: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  // public setData<T>(data: Array<T>) {
-  //   this.configuration.data = data.map<SwitchData<T>>(item => {
-  //     return {
-  //       label: '',
-  //       checked: false
-  //     }
-  //   })
-  // }
-
+  onSelectedChange(item: SwitchData<any>) {
+    item.checked = !item.checked;
+    this.onSelected.emit(item);
+  }
 }

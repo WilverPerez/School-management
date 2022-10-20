@@ -1,67 +1,73 @@
 <div class="col col-12 mt-3">
   <div class="header">
-    <label for="" class="h4">Alumnos > <label for="" class="h5">Crear nuevo alumno</label></label>
+    <label for="" class="h4">Alumnos > <label for="" class="h5">Crear nuevo
+        alumno</label></label>
   </div>
 
   <div class="body border rounded mb-3">
-    <form action="" class="row col m-0">
+    <form [formGroup]="formGroup" class="row col m-0">
 
       <label for="" class="h5 mt-3">Datos del alumno</label>
 
       <div class="form-group col col-6 px-2 py-2">
         <label for="" class="form-label">Nombre</label>
-        <input type="text" class="form-control" placeholder="Title">
+        <input type="text" formControlName="name" class="form-control" placeholder="Nombre">
       </div>
 
       <div class="form-group col col-6 px-2 py-2">
         <label for="" class="form-label">Apellido</label>
-        <input type="text" class="form-control" placeholder="Title">
+        <input type="text" formControlName="lastName" class="form-control" placeholder="Apellido">
       </div>
 
       <div class="form-group col col-6 px-2 py-2">
         <label for="" class="form-label">Fecha de nacimiento</label>
-        <input type="text" class="form-control" placeholder="Title">
+        <input type="date" formControlName="dateOfBorn" class="form-control" placeholder="Fecha de nacimiento">
       </div>
 
       <label for="" class="h5 mt-3">Datos del tutor(a)</label>
 
-      <div class="form-group col col-6 py-2 px-2">
-        <label for="" class="form-label">Nombre</label>
-        <input type="text" class="form-control" placeholder="Title">
-      </div>
-
-      <div class="form-group col col-6 py-2 px-2">
-        <label for="" class="form-label">Apellido</label>
-        <input type="text" class="form-control" placeholder="Title">
-      </div>
-
-      <div class="form-group col col-6 py-2 px-2">
-        <label for="" class="form-label">Parentesco</label>
-        <input type="text" class="form-control" placeholder="Title">
-      </div>
-      
-      <div class="form-group col col-6 py-2 px-2">
-        <label for="" class="form-label">Telefono</label>
-        <input type="text" class="form-control" placeholder="Title">
-      </div>
-
-      <div class="form-group col col-6 py-2 px-2">
-        <label for="" class="form-label">Correo electronico</label>
-        <input type="text" class="form-control" placeholder="Title">
-      </div>
-
-      <div id="parent-container" class="col col-12 row p-0 m-0 d-flex justify-content-between align-items-start flex-row pb-3 mt-3">
-        <div class="col col-6 h-100">
-          <app-switch-list [configuration]="coursesConfiguration"></app-switch-list>
+      <div formGroupName="parent" class="row m-0 p-0">
+        <div class="form-group col col-6 py-2 px-2">
+          <label for="" class="form-label">Nombre</label>
+          <input type="text" formControlName="name" class="form-control" placeholder="Nombre">
         </div>
-
-        <div class="col col-6 h-100">
-          <app-switch-list [configuration]="assignatureConfiguration"></app-switch-list>
+  
+        <div class="form-group col col-6 py-2 px-2">
+          <label for="" class="form-label">Apellido</label>
+          <input type="text" formControlName="lastName" class="form-control" placeholder="Apellido">
+        </div>
+  
+        <div class="form-group col col-6 py-2 px-2">
+          <label for="" class="form-label">Parentesco</label>
+          <input type="text" formControlName="link" class="form-control" placeholder="Parentesco">
+        </div>
+  
+        <div class="form-group col col-6 py-2 px-2">
+          <label for="" class="form-label">Telefono</label>
+          <input type="text" formControlName="phoneNumber" class="form-control" placeholder="Telefono">
+        </div>
+  
+        <div class="form-group col col-6 py-2 px-2">
+          <label for="" class="form-label">Correo electronico</label>
+          <input type="email" formControlName="email" class="form-control" placeholder="Correo electronico">
         </div>
       </div>
 
-      <div class="col col-12 d-flex justify-content-end align-items-center pt-2 px-3 pb-3">
-        <button class="btn btn-primary border rounded m-0 px-1 d-flex justify-content-center align-items-center">
+      <div id="parent-container" class="col col-12 row p-0 m-0 d-flex
+        justify-content-between align-items-start flex-row pb-3 mt-3">
+        <div class="col col-6 h-100">
+          <app-switch-list (onSelected)="onCourseSelectedChange($event)" [configuration]="coursesConfiguration"></app-switch-list>
+        </div>
+
+        <div class="col col-6 h-100">
+          <app-switch-list (onSelected)="onAssignatureSelectedChange($event)" [configuration]="assignatureConfiguration"></app-switch-list>
+        </div>
+      </div>
+
+      <div class="col col-12 d-flex justify-content-end align-items-center pt-2
+        px-3 pb-3">
+        <button (click)="persist()" class="btn btn-primary border rounded m-0 px-1 d-flex
+          justify-content-center align-items-center">
           <ion-icon name="add-circle-outline" class="h3 m-0 pointer-none"></ion-icon>
           <label for="" class="px-2 pointer-none">Agregar alumno</label>
         </button>

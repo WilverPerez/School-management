@@ -34,5 +34,18 @@ namespace School_management.Controllers
 
             return Ok();
         }
+
+        /// <summary>
+        /// Get all assignature
+        /// </summary>
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            IEnumerable<Core.Assignature.Assignature> assignatures = Core.Assignature.Assignature.GetAll(_assignatureRepository);
+
+            IEnumerable<AssignatureListModel> assignatureModels = assignatures.Select(assignature => AssignatureListModel.FromEntity(assignature));
+
+            return Ok(assignatureModels);
+        }
     }
 }

@@ -22,12 +22,17 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the assignature's courses
         /// </summary>
-        public IEnumerable<Course> Courses { get; set; } = Enumerable.Empty<Course>();
+        public IEnumerable<Course> Courses { get; set; } = new List<Course>();
 
         /// <summary>
         /// Represent the assignature's students
         /// </summary>
-        public IEnumerable<Student> Students { get; set; } = Enumerable.Empty<Student>();
+        public IEnumerable<Student> Students { get; set; } = new List<Student>();
+
+        /// <summary>
+        /// Represent the creatiion date.
+        /// </summary>
+        public DateTime CreationDate { get; set; } = DateTime.Now;
 
         /// <summary>
         /// Map the entity db to entity core
@@ -53,10 +58,18 @@ namespace Persistence.Models
             Assignature assignatureEntity = new Assignature
             {
                 Id = assignature.Id,
-                Name = assignature.Name,
-                Courses = assignature.Courses.Select(course => Course.FromEntity(course)),
-                //Students = assignature.Students.Select(student => Student.FromEntity(student)),
+                Name = assignature.Name
             };
+
+            if(assignature.Courses != null)
+            {
+                assignatureEntity.Courses = assignature.Courses.Select(course => Course.FromEntity(course));
+            }
+
+            if (assignature.Students != null)
+            {
+                assignatureEntity.Students = assignature.Students.Select(student => Student.FromEntity(student)).ToList();
+            }
 
             return assignatureEntity;
         }

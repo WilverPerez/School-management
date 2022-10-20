@@ -22,9 +22,6 @@ namespace Persistence.Configurations
 
             builder.HasMany(student => student.Courses)
                    .WithMany(course => course.Students);
-
-            builder.HasMany(student => student.Assignatures)
-                   .WithMany(assignature => assignature.Students);
         }
     }
 }

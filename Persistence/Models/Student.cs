@@ -37,17 +37,17 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the student's creation date
         /// </summary>
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.Now;
 
         /// <summary>
         /// Represent the student's courses
         /// </summary>
-        public IEnumerable<Course> Courses { get; set; } = Enumerable.Empty<Course>();
+        public IEnumerable<Course> Courses { get; set; } = new List<Course>();
 
         /// <summary>
         /// Represent the student's assignatures
         /// </summary>
-        public IEnumerable<Assignature> Assignatures { get; set; } = Enumerable.Empty<Assignature>();
+        public IEnumerable<Assignature> Assignatures { get; set; } = new List<Assignature>();
 
         /// <summary>
         /// Represent the student's assistances
@@ -59,7 +59,6 @@ namespace Persistence.Models
         /// </summary>
         //public IEnumerable<Score> Scores { get; set; }
 
-
         /// <summary>
         /// Map the entity db to entity core
         /// </summary>
@@ -69,11 +68,33 @@ namespace Persistence.Models
             Core.Student.Student student = new Core.Student.Student.Builder()
                                                                    .WithId(Id)
                                                                    .WithName(Name)
+                                                                   .WithLastName(LastName)
                                                                    .WithCourses(Courses.Select(course => course.ToEntity()))
                                                                    .WithAssignatures(Assignatures.Select(assignature => assignature.ToEntity()))
-                                                                   //.WithParent(Parent.ToEntity())
+                                                                   .WithParent(Parent.ToEntity())
                                                                    .Build();
             return student;
+        }
+
+        /// <summary>
+        /// Map the entity core to entity db
+        /// </summary>
+        /// <param name="student">An instance of <see cref="Core.Student.Student"/></param>
+        /// <returns>An instance of <see cref="Student"/></returns>
+        internal static Student FromEntity(Core.Student.Student student)
+        {
+            Student studentEntity = new Student
+            {
+                Id = student.Id,
+                Name = student.Name,
+                LastName = student.LastName,
+                DateOfBorn = student.DateOfBorn,
+                Courses = student.Courses.Select(course => Models.Course.FromEntity(course)),
+                Assignatures = student.Assignatures.Select(course => Models.Assignature.FromEntity(course)),
+                Parent = Models.Parent.FromEntity(student.Parent)
+            };
+
+            return studentEntity;
         }
     }
 }

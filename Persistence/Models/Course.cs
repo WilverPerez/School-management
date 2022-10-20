@@ -22,22 +22,22 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the course's creation date
         /// </summary>
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.Now;
 
         /// <summary>
         /// Represent the course's assignatures
         /// </summary>
-        public IEnumerable<Assignature> Assignatures { get; set; } = Enumerable.Empty<Assignature>();
+        public IEnumerable<Assignature> Assignatures { get; set; } = new List<Assignature>();
 
         /// <summary>
         /// Represent the course's students
         /// </summary>
-        public IEnumerable<Student> Students { get; set; } = Enumerable.Empty<Student>();
+        public IEnumerable<Student> Students { get; set; } = new List<Student>();
 
         /// <summary>
         /// Represent the course's students
         /// </summary>
-        public IEnumerable<Schedule> Schedules { get; set; } = Enumerable.Empty<Schedule>();
+        public IEnumerable<Schedule> Schedules { get; set; } = new List<Schedule>();
 
         /// <summary>
         /// Map the entity db to entity core
@@ -64,9 +64,23 @@ namespace Persistence.Models
             Course assignatureEntity = new Course
             {
                 Id = course.Id,
-                Name = course.Name,
-                Assignatures = course.Assignatures.Select(asignature => Assignature.FromEntity(asignature))   ,
+                Name = course.Name
             };
+
+            if (course.Assignatures != null)
+            {
+                assignatureEntity.Assignatures = course.Assignatures.Select(asignature => Assignature.FromEntity(asignature));
+            }
+
+            if (course.Schedules != null)
+            {
+                assignatureEntity.Schedules = course.Schedules.Select(schedule => Schedule.FromEntity(schedule));
+            }
+
+            if (course.Students != null)
+            {
+                assignatureEntity.Students = course.Students.Select(student => Student.FromEntity(student));
+            }
 
             return assignatureEntity;
         }

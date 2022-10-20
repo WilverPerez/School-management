@@ -58,9 +58,22 @@ namespace Core.Student
 
         #endregion
 
-        public void Persist(IStudentRepository studentRepository)
+        /// <summary>
+        /// retrieve a student into db
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        public async Task Persist(IStudentRepository studentRepository)
         {
-            studentRepository.Persist(this);
+            await studentRepository.Persist(this);
+        }
+
+        /// <summary>
+        /// get all students
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        public static IEnumerable<Student> GetAll(IStudentRepository studentRepository)
+        {
+            return studentRepository.GetList();
         }
 
         /// <summary>
@@ -71,7 +84,7 @@ namespace Core.Student
             internal string NameOption { get; set; }
             internal string LastNameOption { get; set; }
             internal DateTime DateOfBornOption { get; set; }
-            internal Parent ParentOption { get; set; } = new Parent();
+            internal Parent ParentOption { get; set; }
             internal IEnumerable<Course.Course> CoursesOption { get; set; }
             internal IEnumerable<Assignature.Assignature> AssignaturesOption { get; set; }
 

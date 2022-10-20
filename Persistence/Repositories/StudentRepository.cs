@@ -1,5 +1,6 @@
 ﻿using Core.Contracts;
 using Core.Student;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
 {
@@ -21,6 +22,19 @@ namespace Persistence.Repositories
         /// <inheritdoc/>
         async Task IStudentRepository.Persist(Student student)
         {
+            Models.Student studentModel = Models.Student.FromEntity(student);
+
+            studentModel.Assignatures = _context.Assignature.Where(asignature => studentModel.Assignatures.Select(assignature => assignature.Id).Contains(asignature.Id)).ToList();
+            studentModel.Courses = _context.Course.Where(course => studentModel.Courses.Select(course => course.Id).Contains(course.Id)).ToList();
+            Models.Parent parent = _context.Parent.FirstOrDefault(parent => parent.Email == studentModel.Parent.Email);
+
+            if (parent != null)
+            {
+                studentModel.Parent = parent;
+            }
+
+            await _context.Student.AddAsync(studentModel);
+
             await _context.SaveChangesAsync();
         }
 
@@ -28,6 +42,16 @@ namespace Persistence.Repositories
         IEnumerable<Student> IStudentRepository.GetAll()
         {
             IEnumerable<Models.Student> students = _context.Student;
+
+            return students.Select(student => student.ToEntity());
+        }
+
+        /// <inheritdoc/>
+        IEnumerable<Student> IStudentRepository.GetList()
+        {
+            IEnumerable<Models.Student> students = _context.Student
+                                                           .AsNoTracking()
+                                                           .Include(student => student.Parent);
 
             return students.Select(student => student.ToEntity());
         }

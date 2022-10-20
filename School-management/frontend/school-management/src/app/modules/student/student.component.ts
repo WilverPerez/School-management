@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Course } from 'src/app/models/course.model';
+import { Student } from 'src/app/models/student.model';
 import { TableConfiguration } from 'src/app/models/table-configuration.model';
+import { StudentService } from 'src/app/services/student.service';
+import { TableComponent } from 'src/app/shared/table/table.component';
 
 @Component({
   selector: 'app-student',
@@ -9,47 +12,42 @@ import { TableConfiguration } from 'src/app/models/table-configuration.model';
 })
 export class StudentComponent implements OnInit {
 
-  configuration: TableConfiguration<any> = {
+  configuration: TableConfiguration<Student> = {
     title: 'Alumnos',
     icon: 'school',
     headers: [
       {
         label: 'name',
-        value: (item) => item.name,
+        value: (item) => item.fullName,
         primary: true
       },
       {
         label: 'tutor',
-        value: (item) => item.tutor + ' (Tutor / a)'
+        value: (item) => item.parent.fullName + ' (Tutor / a)'
       },
       {
         label: 'linked',
-        value: (item) => item.linked + ' (Vinculo)'
+        value: (item) => item.parent.link + ' (Vinculo)'
       }
     ],
-    data: [
-      {
-        name: 'Anthony Perez',
-        tutor: 'Faustina Romero',
-        linked: 'Madre'
-      },
-      {
-        name: 'Alejandro Garcia',
-        tutor: 'Faustina Romero',
-        linked: 'Madre'
-      },
-      {
-        name: 'Wilson Perez',
-        tutor: 'Faustina Romero',
-        linked: 'Madre'
-      }
-    ]
+    data: []
   }
 
-  constructor() {
-  }
+  @ViewChild('table') table!: TableComponent;
+
+  constructor(private studentService: StudentService) { }
 
   ngOnInit() {
+    this._bootstrap();
+  }
+
+  private _bootstrap() {
+    this.studentService.getAll().subscribe((students) => {
+      this.configuration.data = students;
+      console.log(this.table);
+      
+      this.table.refresh();
+    });
   }
 
 }

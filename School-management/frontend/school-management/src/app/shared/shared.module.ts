@@ -39,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
     TableComponent,
     AssignementListComponent,
     StudentListComponent,
-    SwitchListComponent
+    SwitchListComponent,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [],

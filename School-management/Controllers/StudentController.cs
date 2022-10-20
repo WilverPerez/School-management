@@ -1,5 +1,6 @@
 using Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using School_management.Models.Student;
 
 namespace School_management.Controllers
 {
@@ -7,19 +8,41 @@ namespace School_management.Controllers
     [Route("api/[controller]")]
     public class StudentController : ControllerBase
     {
-        private readonly ILogger<StudentController> _logger;
         private readonly IStudentRepository _studentRepository;
 
-        public StudentController(ILogger<StudentController> logger, IStudentRepository studentRepository)
+        /// <summary>
+        /// Implement an instance of <see cref="StudentController"/>
+        /// </summary>
+        /// <param name="studentRepository">Implement an instance of <see cref="IStudentRepository"/></param>
+        public StudentController(IStudentRepository studentRepository)
         {
-            _logger = logger;
             _studentRepository = studentRepository;
         }
 
+        /// <summary>
+        /// Persist a student
+        /// </summary>
         [HttpPost]
-        public IActionResult CreateStudent()
+        public async Task<IActionResult> CreateStudent([FromBody] StudentModel student)
         {
+            Core.Student.Student studentEntity = student.ToEntity();
+
+            await studentEntity.Persist(_studentRepository);
+
             return Ok();
+        }
+
+        /// <summary>
+        /// get all students
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            IEnumerable<Core.Student.Student> students = Core.Student.Student.GetAll(_studentRepository);
+
+            IEnumerable<Models.Student.StudentModel> studentsModel = students.Select(student => Models.Student.StudentModel.FromEntity(student));
+
+            return Ok(studentsModel);
         }
     }
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AssignatureList } from '../models/assignature-list.model';
 import { Assignature } from '../models/assignature.model';
 
 @Injectable({
@@ -13,8 +14,8 @@ export class AssignatureService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getAll(): Observable<Array<Assignature>> {
-    return this.httpClient.get<Array<Assignature>>(this._baseUrl);
+  public getAll(): Observable<Array<AssignatureList>> {
+    return this.httpClient.get<Array<AssignatureList>>(this._baseUrl);
   }
   
   public persist(assignature: Assignature): Observable<boolean> {
