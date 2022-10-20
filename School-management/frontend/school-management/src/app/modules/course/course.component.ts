@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CourseList } from 'src/app/models/course-list.model';
 import { Course } from 'src/app/models/course.model';
 import { TableConfiguration } from 'src/app/models/table-configuration.model';
+import { CourseService } from 'src/app/services/course.service';
+import { TableComponent } from 'src/app/shared/table/table.component';
 
 @Component({
   selector: 'app-course',
@@ -9,7 +12,7 @@ import { TableConfiguration } from 'src/app/models/table-configuration.model';
 })
 export class CourseComponent implements OnInit {
 
-  configuration: TableConfiguration<Course> = {
+  configuration: TableConfiguration<CourseList> = {
     title: 'Cursos',
     icon: 'school',
     headers: [
@@ -18,25 +21,39 @@ export class CourseComponent implements OnInit {
         value: (item) => item.name,
         primary: true
       },
-      {
-        label: 'schedule',
-        value: (item) => item.schedule
-      },
+      // {
+      //   label: 'schedule',
+      //   value: (item) => item.schedule
+      // },
       {
         label: 'studentCount',
         value: (item) => item.studentCount + ' Students'
       },
       {
         label: 'asignatureCount',
-        value: (item) => item.asignatureCount + ' Asignatures'
+        value: (item) => item.assignatureCount + ' Asignatures'
       }
     ],
     data: []
   }
+
+  @ViewChild('table') table!: TableComponent;
   
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit() {
+    this._bootstrap();
+  }
+
+  private _bootstrap() {
+    this._loadCourses();
+  }
+
+  private _loadCourses() {
+    this.courseService.getAll().subscribe(courses => {
+      this.configuration.data = courses;
+      this.table.refresh();
+    });
   }
 
 }

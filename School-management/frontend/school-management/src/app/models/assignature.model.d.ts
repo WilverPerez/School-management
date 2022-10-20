@@ -1,7 +1,7 @@
-import { Course } from './course.model';
+import { CourseList } from './course-list.model';
 
 export interface Assignature {
     id: string;
     name: string;
-    courses: Array<Course>;
+    courses: Array<CourseList>;
 }

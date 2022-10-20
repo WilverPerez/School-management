@@ -1,6 +1,7 @@
 ﻿using Core.Contracts;
 using Core.Course;
 using Core.Schedule;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
 {
@@ -22,11 +23,28 @@ namespace Persistence.Repositories
         /// <inheritdoc/>
         IEnumerable<Course> ICourseRepository.GetAll()
         {
-            IEnumerable<Models.Course> courses = _context.Course;
+            IEnumerable<Models.Course> courses = _context.Course.AsNoTracking()
+                                                                .Include(course => course.Students)
+                                                                .Include(course => course.Assignatures)
+                                                                .Include(course => course.Schedules);
 
             IEnumerable<Course> courseEntities = courses.Select(course => course.ToEntity());
 
             return courseEntities;
+        }
+
+        /// <inheritdoc/>
+        async Task ICourseRepository.Persist(Course course)
+        {
+            Models.Course courseEntity = Models.Course.FromEntity(course);
+
+            courseEntity.Assignatures = _context.Assignature.Where(asignature => courseEntity.Assignatures.Select(assignature => assignature.Id).Contains(asignature.Id)).ToList();
+            courseEntity.Schedules = _context.Schedule.Where(course => courseEntity.Schedules.Select(course => course.Id).Contains(course.Id)).ToList();
+            courseEntity.Students = _context.Student.Where(course => courseEntity.Students.Select(course => course.Id).Contains(course.Id)).ToList();
+
+            await _context.Course.AddAsync(courseEntity);
+
+            await _context.SaveChangesAsync();
         }
     }
 }

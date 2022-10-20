@@ -16,6 +16,16 @@
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
+        /// Represent the course's student count
+        /// </summary>
+        public int StudentCount { get; set; }
+
+        /// <summary>
+        /// Represent the course's assignature count
+        /// </summary>
+        public int AssignatureCount { get; set; } 
+
+        /// <summary>
         /// Map to <see cref="CourseListModel"/>
         /// </summary>
         /// <param name="course">Represent an <see cref="Core.Course.Course"/></param>
@@ -26,6 +36,8 @@
             {
                 Id = course.Id,
                 Name = course.Name,
+                StudentCount = course.Students.Count(),
+                AssignatureCount = course.Assignatures.Count()
             };
             
             return courseListModel;

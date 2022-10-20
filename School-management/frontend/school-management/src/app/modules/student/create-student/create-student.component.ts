@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AssignatureList } from 'src/app/models/assignature-list.model';
 import { Assignature } from 'src/app/models/assignature.model';
+import { CourseList } from 'src/app/models/course-list.model';
 import { Course } from 'src/app/models/course.model';
 import { Student } from 'src/app/models/student.model';
 import { SwitchConfiguration, SwitchData } from 'src/app/models/switch-configuration.model';
@@ -15,12 +17,12 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class CreateStudentComponent implements OnInit {
 
-  coursesConfiguration: SwitchConfiguration<Course> = {
+  coursesConfiguration: SwitchConfiguration<CourseList> = {
     title: 'Cursos',
     data: []
   }
 
-  assignatureConfiguration: SwitchConfiguration<Assignature> = {
+  assignatureConfiguration: SwitchConfiguration<AssignatureList> = {
     title: 'Asignaturas',
     data: []
   }
@@ -59,11 +61,12 @@ export class CreateStudentComponent implements OnInit {
 
   private _loadCourses() {
     this.courseService.getAll().subscribe(schedule => {
-      this.coursesConfiguration.data = schedule.map<SwitchData<Course>>(sch => {
+      this.coursesConfiguration.data = schedule.map<SwitchData<CourseList>>(sch => {
         return {
           id: sch.id,
           label: sch.name,
-          checked: false
+          checked: false,
+          toEntity: () => sch
         };
       });
     });
@@ -71,11 +74,12 @@ export class CreateStudentComponent implements OnInit {
 
   private _loadAssignature() {
     this.assignatureService.getAll().subscribe(schedule => {
-      this.assignatureConfiguration.data = schedule.map<SwitchData<Assignature>>(sch => {
+      this.assignatureConfiguration.data = schedule.map<SwitchData<AssignatureList>>(sch => {
         return {
           id: sch.id,
           label: sch.name,
-          checked: false
+          checked: false,
+          toEntity: () => sch
         };
       });
     });
@@ -88,6 +92,7 @@ export class CreateStudentComponent implements OnInit {
     student.assignatures = this._getSelectedAssignatures();
 
     this.studentService.persist(student).subscribe({
+      next: () => this.formGroup.reset(),
       error: error => {
         console.log(error);
       }
@@ -95,10 +100,12 @@ export class CreateStudentComponent implements OnInit {
   }
 
   private _getSeletedCourses() {
-    return this.coursesConfiguration.data.filter(course => course.checked).map(course => {
+    return this.coursesConfiguration.data.filter(course => course.checked).map<CourseList>(course => {
       return {
         id: course.id,
-        name: course.label
+        name: course.label,
+        assignatureCount: 0,
+        studentCount: 0
       };
     });
   }

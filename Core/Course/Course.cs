@@ -56,6 +56,15 @@ namespace Core.Course
         }
 
         /// <summary>
+        /// Retrieve a course into db.
+        /// </summary>
+        /// <param name="courseRepository">An instance of <see cref="ICourseRepository"/></param>
+        public async Task Persist(ICourseRepository courseRepository)
+        {
+            await courseRepository.Persist(this);
+        }
+
+        /// <summary>
         /// Class to build an <see cref="Course"/> instance
         /// </summary>
         public class Builder {

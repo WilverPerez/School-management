@@ -19,8 +19,12 @@ namespace School_management.Controllers
         /// Create a course
         /// </summary>
         [HttpPost]
-        public IActionResult CreateAssignature()
+        public async Task<IActionResult> CreateAssignature([FromBody] CourseModel course)
         {
+            Core.Course.Course courseEntity = course.ToEntity();
+
+            await courseEntity.Persist(_courseRepository);
+
             return Ok();
         }
 

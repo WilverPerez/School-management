@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Assignature } from 'src/app/models/assignature.model';
+import { CourseList } from 'src/app/models/course-list.model';
 import { Course } from 'src/app/models/course.model';
 import { SwitchConfiguration, SwitchData } from 'src/app/models/switch-configuration.model';
 import { AssignatureService } from 'src/app/services/assignature.service';
@@ -13,7 +14,7 @@ import { CourseService } from 'src/app/services/course.service';
 })
 export class CreateAssignatureComponent implements OnInit {
 
-  courseConfiguration: SwitchConfiguration<any> = {
+  courseConfiguration: SwitchConfiguration<CourseList> = {
     title: 'Cursos',
     data: []
   }
@@ -43,11 +44,12 @@ export class CreateAssignatureComponent implements OnInit {
 
   private _loadCourses() {
     this.courseService.getAll().subscribe(schedule => {
-      this.courseConfiguration.data = schedule.map<SwitchData<Course>>(sch => {
+      this.courseConfiguration.data = schedule.map<SwitchData<CourseList>>(sch => {
         return {
           id: sch.id,
           label: sch.name,
-          checked: false
+          checked: false,
+          toEntity: () => sch
         };
       });
     });
@@ -56,13 +58,12 @@ export class CreateAssignatureComponent implements OnInit {
   public persist() {
     let assignature: Assignature = this.formGroup.getRawValue();
 
-    assignature.courses = this.courseConfiguration.data.filter(course => course.checked).map<Course>(course => {
+    assignature.courses = this.courseConfiguration.data.filter(course => course.checked).map<CourseList>(course => {
       return {
         id: course.id,
         name: course.label,
-        asignatureCount: 0,
+        assignatureCount: 0,
         studentCount: 0,
-        schedule: ''
       }
     });
 
