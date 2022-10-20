@@ -32,8 +32,8 @@
           <label class="mt-2" [class.font-weight-bold]="col.primary">{{col.value(row)}}</label>
         </td>
         <td class="text-center pt-3">
-          <ion-icon name="eye-outline" [routerLink]="['detail']" routerLinkActive="router-link-active"  class="h3 text-primary"></ion-icon>
-          <ion-icon name="create-outline" [routerLink]="['edit/'+ '18d66e67-64ef-4e0f-b851-58039ae76ce4']" class="h3 mx-1 text-success"></ion-icon>
+          <ion-icon name="eye-outline" [routerLink]="['detail/'+ row.id]" routerLinkActive="router-link-active"  class="h3 text-primary"></ion-icon>
+          <ion-icon name="create-outline" [routerLink]="['edit/'+ row.id]" class="h3 mx-1 text-success"></ion-icon>
           <ion-icon name="trash-outline" class="h3 text-danger"></ion-icon>
         </td>
       </tr>
