@@ -40,5 +40,35 @@ namespace School_management.Controllers
 
             return Ok(courses);
         }
+
+        /// <summary>
+        /// Get a course by id
+        /// </summary>
+        [HttpGet("by-id")]
+        public IActionResult GetById([FromQuery] Guid courseId)
+        {
+            Core.Course.Course courseEntity = new Core.Course.Course.Builder()
+                                                                    .WithId(courseId)
+                                                                    .Build();
+
+            courseEntity = courseEntity.Get(_courseRepository);
+
+            CourseModel courseModel = CourseModel.FromEntity(courseEntity);
+
+            return Ok(courseModel);
+        }
+
+        /// <summary>
+        /// update a course
+        /// </summary>
+        [HttpPatch()]
+        public IActionResult Update([FromBody] CourseModel course)
+        {
+            Core.Course.Course courseEntity = course.ToEntity();
+
+            courseEntity.Update(_courseRepository);
+
+            return Ok();
+        }
     }
 }

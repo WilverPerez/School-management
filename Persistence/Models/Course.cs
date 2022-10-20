@@ -84,5 +84,17 @@ namespace Persistence.Models
 
             return assignatureEntity;
         }
+
+        /// <summary>
+        /// Refresh entity model
+        /// </summary>
+        /// <param name="courseEntity"><see cref="Course"/></param>
+        internal void Map(Course courseEntity)
+        {
+            Name = courseEntity.Name;
+            Assignatures = courseEntity.Assignatures;
+            Schedules = courseEntity.Schedules;
+            Students = courseEntity.Students;
+        }
     }
 }

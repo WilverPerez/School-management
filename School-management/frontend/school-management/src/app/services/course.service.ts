@@ -21,4 +21,8 @@ export class CourseService {
   public persist(course: Course): Observable<boolean> {
     return this.httpClient.post<boolean>(this._baseUrl, course);
   }
+  
+  public getById(courseId: string): Observable<Course> {
+    return this.httpClient.get<Course>(this._baseUrl + '/by-id', {params: {courseId}});
+  }
 }

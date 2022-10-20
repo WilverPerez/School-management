@@ -65,6 +65,25 @@ namespace Core.Course
         }
 
         /// <summary>
+        /// Get by id
+        /// </summary>
+        /// <param name="courseRepository">An instance of <see cref="ICourseRepository"/></param>
+        /// <returns>An instance of <see cref="Course"/></returns>
+        public Course Get(ICourseRepository courseRepository)
+        {
+            return courseRepository.GetById(Id);
+        }
+
+        /// <summary>
+        /// Update a course
+        /// </summary>
+        /// <param name="courseRepository">An instance of <see cref="ICourseRepository"/></param>
+        public async Task Update(ICourseRepository courseRepository)
+        {
+            await courseRepository.Update(this);
+        }
+
+        /// <summary>
         /// Class to build an <see cref="Course"/> instance
         /// </summary>
         public class Builder {

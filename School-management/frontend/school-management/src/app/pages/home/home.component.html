@@ -1,18 +1,20 @@
 <div class="col row">
 
-  <div id="container-parent" class="d-flex justify-content-between flex-column align-items-start">
-    
+  <div id="container-parent" class="d-flex justify-content-between flex-column
+    align-items-start">
+
     <full-calendar class="col-12" [options]="calendarOptions"></full-calendar>
-    
     <div class="header col col-12">
-      <label class="h5 mb-0 mt-3">Cursos de hoy</label>
+      <label class="h5 mb-0 mt-3 text-black">Cursos de hoy</label>
       <hr class="w-100">
 
       <div class="d-flex flex-wrap">
 
-        <app-card></app-card>
-        <app-card></app-card>
-        <app-card></app-card>
+        <app-card *ngFor="let course of coursesToNow" [routerLink]="'../course/detail/'+course.id" class="border-0">
+          <label class="font-weight-bold h5">Curso</label>
+          <label class="font-size-large font-weight-bold">{{course.name}}</label>
+          <small class="muted">{{course?.schedule}}</small>
+        </app-card>
         <app-card [add]="true"></app-card>
 
       </div>
@@ -23,7 +25,6 @@
       align-items-start col col-12 p-0 m-0">
 
       <app-assignement-list class="w-50 mx-2 h-100"></app-assignement-list>
-
       <app-student-list class="w-50 mx-3 h-100"></app-student-list>
 
     </div>

@@ -40,5 +40,21 @@
                                                               .Build();
             return course;
         }
+
+        /// <summary>
+        /// Map to <see cref="CourseModel"/>
+        /// </summary>
+        /// <returns><see cref="CourseModel"/></returns>
+        internal static CourseModel FromEntity(Core.Course.Course courseEntity)
+        {
+            CourseModel courseModel = new CourseModel
+            {
+                Name = courseEntity.Name,
+                Assignatures = courseEntity.Assignatures.Select(assignature => Models.Assignature.AssignatureListModel.FromEntity(assignature)),
+                Students = courseEntity.Students.Select(student => Models.Student.StudentModel.FromEntity(student)),
+            };
+
+            return courseModel;
+        }
     }
 }

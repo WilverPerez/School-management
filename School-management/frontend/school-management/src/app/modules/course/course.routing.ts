@@ -15,8 +15,12 @@ const routes: Routes = [
     component: CreateCourseComponent
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     component: DetailComponent
+  },
+  {
+    path: 'edit/:id',
+    component: CreateCourseComponent
   },
   {
     path: 'detail/assignature',

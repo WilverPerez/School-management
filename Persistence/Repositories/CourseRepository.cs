@@ -1,6 +1,5 @@
 ﻿using Core.Contracts;
 using Core.Course;
-using Core.Schedule;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
@@ -43,6 +42,33 @@ namespace Persistence.Repositories
             courseEntity.Students = _context.Student.Where(course => courseEntity.Students.Select(course => course.Id).Contains(course.Id)).ToList();
 
             await _context.Course.AddAsync(courseEntity);
+
+            await _context.SaveChangesAsync();
+        }
+
+        /// <inheritdoc/>
+        Course ICourseRepository.GetById(Guid id)
+        {
+            Models.Course course = _context.Course
+                                           .AsNoTracking()
+                                           .Include(course => course.Assignatures)
+                                           .Include(course => course.Students)
+                                           .ThenInclude(course => course.Parent)
+                                           .FirstOrDefault(course => course.Id == id);
+
+            return course.ToEntity();
+        }
+
+        /// <inheritdoc/>
+        async Task ICourseRepository.Update(Course course)
+        {
+            Models.Course courseEntity = Models.Course.FromEntity(course);
+
+            Models.Course courseUpdate = await _context.Course.FirstOrDefaultAsync(course => course.Id == courseEntity.Id);
+
+            courseUpdate.Map(courseEntity);
+
+            _context.Course.Update(courseUpdate);
 
             await _context.SaveChangesAsync();
         }

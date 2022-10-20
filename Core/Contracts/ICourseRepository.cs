@@ -15,5 +15,17 @@
         /// </summary>
         /// <param name="course">An instance of <see cref="Course.Course"/></param>
         Task Persist(Course.Course course);
+
+        /// <summary>
+        /// Get by id
+        /// <paramref name="id"/>
+        /// </summary>
+        Course.Course GetById(Guid id);
+
+        /// <summary>
+        /// Update a course
+        /// </summary>
+        /// <param name="course">An instance of <see cref="Course.Course"/></param>
+        Task Update(Course.Course course);
     }
 }

@@ -3,7 +3,7 @@
   <div id="container-parent" class="d-flex justify-content-between flex-column align-items-start">
     
     <div class="header col col-12">
-      <label class="h4 mb-0 mt-3">Cursos > <label for="" class="h5">1ro B</label></label>
+      <label class="h4 mb-0 mt-3">Cursos > <label for="" class="h5">{{courseData.name}}</label></label>
       <hr class="">
 
       <label class="h5 mb-0 mt-3">Asignaturas</label>
@@ -11,9 +11,10 @@
       
       <div class="d-flex flex-wrap">
 
-        <app-card></app-card>
-        <app-card></app-card>
-        <app-card></app-card>
+        <app-card *ngFor="let assignature of courseData.assignatures">
+          <label class="font-weight-bold font-size-large">Asignatura</label>
+          <small class="">{{assignature.name}}</small>
+        </app-card>
         <app-card [add]="true"></app-card>
 
       </div>
@@ -21,7 +22,7 @@
     </div>
 
     <div id="container" class="col col-12 p-0 m-0">
-      <app-table [configuration]="configuration"></app-table>
+      <app-table #table [configuration]="configuration"></app-table>
     </div>
 
   </div>

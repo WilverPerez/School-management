@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AssignatureList } from 'src/app/models/assignature-list.model';
 import { Course } from 'src/app/models/course.model';
 import { Schedule } from 'src/app/models/schedule.model';
@@ -39,7 +41,8 @@ export class CreateCourseComponent implements OnInit {
     private studentService: StudentService,
     private assignatureService: AssignatureService,
     private courseService: CourseService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this._boostrap();
@@ -47,9 +50,10 @@ export class CreateCourseComponent implements OnInit {
   }
 
   private _boostrap() {
-    this._getAllSchedules();
-    this._getAllStudents();
-    this._getAllAssignatures();
+    this._getAllSchedules(),
+      this._getAllStudents(),
+      this._getAllAssignatures(),
+      this._seOrderDetail();
   }
 
   private _initializeForm() {
@@ -102,7 +106,7 @@ export class CreateCourseComponent implements OnInit {
 
   public onSelectAssignatures(event: SwitchData<Course>) {
     this.assignatureConfiguration.data.filter(assignature => {
-      if(assignature.id === event.id) {
+      if (assignature.id === event.id) {
         assignature.checked = event.checked;
       }
     });
@@ -110,7 +114,7 @@ export class CreateCourseComponent implements OnInit {
 
   public onSelectSchedules(event: SwitchData<Schedule>) {
     this.scheduleConfiguration.data.filter(schedule => {
-      if(schedule.id === event.id) {
+      if (schedule.id === event.id) {
         schedule.checked = event.checked;
       }
     });
@@ -118,12 +122,36 @@ export class CreateCourseComponent implements OnInit {
 
   public onSelectStudents(event: SwitchData<Student>) {
     this.studentConfiguration.data.filter(student => {
-      if(student.id === event.id) {
+      if (student.id === event.id) {
         student.checked = event.checked;
       }
     });
   }
-  
+
+  private _seOrderDetail() {
+    this.courseService.getById(this.route.snapshot.params['id']).subscribe(value => {
+      this.formGroup.setValue(value);
+    
+      this.scheduleConfiguration.data.filter(schedule => {
+        if (value.schedules.find(sch => sch.id === schedule.id)) {
+          schedule.checked = true;
+        }
+      });
+
+      this.studentConfiguration.data.filter(student => {
+        if (value.students.find(stu => stu.id === student.id)) {
+          student.checked = true;
+        }
+      });
+
+      this.assignatureConfiguration.data.filter(assignature => {
+        if (value.assignatures.find(asg => asg.id === assignature.id)) {
+          assignature.checked = true;
+        }
+      });
+    });
+  }
+
   public persist() {
     const course: Course = this.formGroup.getRawValue();
     course.assignatures = this.assignatureConfiguration.data.filter(assignature => assignature.checked).map(assignature => assignature.toEntity());

@@ -1,6 +1,7 @@
 ﻿using Core.Assignature;
 using Core.Contracts;
 using Core.Schedule;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
 {
@@ -22,7 +23,9 @@ namespace Persistence.Repositories
         /// <inheritdoc/>
         IEnumerable<Assignature> IAssignatureRepository.GetAll()
         {
-            IEnumerable<Models.Assignature> assignatures = _context.Assignature;
+            IEnumerable<Models.Assignature> assignatures = _context.Assignature
+                                                                   .AsNoTracking()
+                                                                   .Include(assignature => assignature.Courses);
 
             IEnumerable<Assignature> assignatureEntities = assignatures.Select(assignature => assignature.ToEntity());
 
@@ -33,7 +36,10 @@ namespace Persistence.Repositories
         async Task IAssignatureRepository.Persist(Assignature assignature)
         {
             Models.Assignature assignatureEntity = Models.Assignature.FromEntity(assignature);
-            
+
+            assignatureEntity.Courses = _context.Course.Where(course => assignatureEntity.Courses.Select(course => course.Id).Contains(course.Id)).ToList();
+            assignatureEntity.Students = _context.Student.Where(course => assignatureEntity.Students.Select(course => course.Id).Contains(course.Id)).ToList();
+
             await _context.Assignature.AddAsync(assignatureEntity);
 
             await _context.SaveChangesAsync();

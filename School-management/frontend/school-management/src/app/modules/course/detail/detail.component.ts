@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Course } from 'src/app/models/course.model';
+import { Student } from 'src/app/models/student.model';
 import { TableConfiguration } from 'src/app/models/table-configuration.model';
+import { CourseService } from 'src/app/services/course.service';
+import { TableComponent } from 'src/app/shared/table/table.component';
 
 @Component({
   selector: 'app-detail',
@@ -8,46 +13,46 @@ import { TableConfiguration } from 'src/app/models/table-configuration.model';
 })
 export class DetailComponent implements OnInit {
 
-  configuration: TableConfiguration<any> = {
+  configuration: TableConfiguration<Student> = {
     title: 'Alumnos',
     icon: 'school',
     headers: [
       {
         label: 'name',
-        value: (item) => item.name,
+        value: (item) => item.fullName,
         primary: true
       },
       {
         label: 'tutor',
-        value: (item) => item.tutor + ' (Tutor / a)'
+        value: (item) => item.parent.fullName + ' (Tutor / a)'
       },
       {
         label: 'linked',
-        value: (item) => item.linked + ' (Vinculo)'
+        value: (item) => item.parent.link + ' (Vinculo)'
       }
     ],
-    data: [
-      {
-        name: 'Anthony Perez',
-        tutor: 'Faustina Romero',
-        linked: 'Madre'
-      },
-      {
-        name: 'Alejandro Garcia',
-        tutor: 'Faustina Romero',
-        linked: 'Madre'
-      },
-      {
-        name: 'Wilson Perez',
-        tutor: 'Faustina Romero',
-        linked: 'Madre'
-      }
-    ]
+    data: []
   }
-  
-  constructor() { }
+
+  @ViewChild('table') table!: TableComponent;
+  courseData!: Course;
+
+  constructor(
+    private courseService: CourseService, 
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this._bootstrap();
   }
 
+  private _bootstrap() {
+    this._loadStudents();
+  }
+
+  private _loadStudents() {
+    this.courseService.getById(this.route.snapshot.params['id']).subscribe(course => {
+      this.configuration.data = course.students;
+      this.table.refresh();
+    });
+  }
 }

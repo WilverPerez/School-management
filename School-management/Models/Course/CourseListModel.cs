@@ -23,7 +23,12 @@
         /// <summary>
         /// Represent the course's assignature count
         /// </summary>
-        public int AssignatureCount { get; set; } 
+        public int AssignatureCount { get; set; }
+
+        /// <summary>
+        /// Represent the course's schedule name
+        /// </summary>
+        public string Schedule { get; set; } = string.Empty;
 
         /// <summary>
         /// Map to <see cref="CourseListModel"/>
@@ -37,7 +42,8 @@
                 Id = course.Id,
                 Name = course.Name,
                 StudentCount = course.Students.Count(),
-                AssignatureCount = course.Assignatures.Count()
+                AssignatureCount = course.Assignatures.Count(),
+                Schedule = BuildScheduleString(course)
             };
             
             return courseListModel;
@@ -54,6 +60,13 @@
                                                               .WithName(Name)
                                                               .Build();
             return course;
+        }
+
+        private static string BuildScheduleString(Core.Course.Course course)
+        {
+            List<string> schedules = course.Schedules.Select(schedule => schedule.Name.Substring(0, 3)).ToList();
+
+            return String.Join(", ", schedules);
         }
     }
 }
