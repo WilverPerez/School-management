@@ -40,15 +40,17 @@ namespace Persistence.Repositories
         async Task IAssistanceRepository.PersistRange(IEnumerable<Assistance> assistance)
         {
             IEnumerable<Models.Assistance> assistances = assistance.Select(assis => Models.Assistance.FromEntity(assis));
+            List<Models.Assistance> assistanceEnti = new List<Models.Assistance>();
 
             foreach (Models.Assistance assistanceEntity in assistances)
             {
                 assistanceEntity.Student = await _context.Student.FirstOrDefaultAsync(student => student.Id == assistanceEntity.Student.Id);
                 assistanceEntity.Assignature = await _context.Assignature.FirstOrDefaultAsync(assignature => assignature.Id == assistanceEntity.Assignature.Id);
                 assistanceEntity.Course = await _context.Course.FirstOrDefaultAsync(course => course.Id == assistanceEntity.Course.Id);
+                assistanceEnti.Add(assistanceEntity);
             }
 
-            await _context.Assistance.AddRangeAsync(assistances);
+            await _context.Assistance.AddRangeAsync(assistanceEnti);
 
             await _context.SaveChangesAsync();
         }

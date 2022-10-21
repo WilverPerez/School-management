@@ -40,15 +40,17 @@ namespace Persistence.Repositories
         async Task IScoreRepository.PersistRange(IEnumerable<Score> scoreEntities)
         {
             IEnumerable<Models.Score> scores = scoreEntities.Select(assis => Models.Score.FromEntity(assis));
+            List<Models.Score> scoreEntity = new List<Models.Score>();
 
             foreach (Models.Score score in scores)
             {
                 score.Student = await _context.Student.FirstOrDefaultAsync(student => student.Id == score.Student.Id);
                 score.Assignature = await _context.Assignature.FirstOrDefaultAsync(assignature => assignature.Id == score.Assignature.Id);
                 score.Course = await _context.Course.FirstOrDefaultAsync(course => course.Id == score.Course.Id);
+                scoreEntity.Add(score);
             }
 
-            await _context.Score.AddRangeAsync(scores);
+            await _context.Score.AddRangeAsync(scoreEntity);
 
             await _context.SaveChangesAsync();
         }

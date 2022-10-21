@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentAssistance } from 'src/app/models/student-assistance.model';
-import { Student } from 'src/app/models/student.model';
 import { TableConfiguration } from 'src/app/models/table-configuration.model';
 
 @Component({
@@ -22,7 +21,7 @@ export class AssignatureDetailComponent implements OnInit {
     ],
     data: []
   }
-  assistenceMode = true;
+  assistenceMode = false;
 
   constructor() { }
 

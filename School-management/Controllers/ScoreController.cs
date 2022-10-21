@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using School_management.Models.Score;
 using School_management.Models.Student;
 
-namespace School_management.Controllers
+namespace School_management.Controllers 
 {
     [ApiController]
     [Route("api/[controller]")]
