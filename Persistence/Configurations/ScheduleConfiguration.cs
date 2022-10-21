@@ -10,7 +10,7 @@ namespace Persistence.Configurations
     public sealed class ScheduleConfiguration : IEntityTypeConfiguration<Schedule>
     {
         /// <summary>
-        /// Configure relationships and restrictions of Bond Entity.
+        /// Configure relationships and restrictions of <see cref="Schedule"/> Entity.
         /// </summary>
         /// <param name="builder">An instance of <see cref="EntityTypeBuilder"/></param>
         public void Configure(EntityTypeBuilder<Schedule> builder)

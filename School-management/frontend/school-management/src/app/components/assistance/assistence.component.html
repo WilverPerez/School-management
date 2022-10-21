@@ -1,0 +1,85 @@
+<div class="w-100 mx-2 rounded h-100 overflow-auto">
+  <div class="header d-flex justify-content-between align-items-center py-3">
+    <label class="h5 mb-0 px-3 pb-3">{{configuration.title}}</label>
+    <div class="col-3 search d-flex justify-content-center align-items-center
+      position-relative">
+      <ion-icon name="search-outline" class="search-icon h5 position-absolute"></ion-icon>
+      <input (keyup)="filter()" class="form-control"
+        type="text" placeholder="Buscar..."
+        aria-label="Buscar...">
+    </div>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <th class="th-avatar"></th>
+      <th *ngFor="let thead of configuration.headers"></th>
+    </thead>
+
+    <tbody *ngIf="hasLoaded">
+      <tr class="my-3" *ngFor="let row of data">
+        <td class="text-center pt-2">
+          <ion-icon [name]="configuration.icon" class="h2 pointer-none mt-3"></ion-icon>
+        </td>
+        <td *ngFor="let col of configuration.headers; let index">
+          <label class="mt-4" [class.font-weight-bold]="col.primary">{{col.value(row)}}</label>
+        </td>
+        <td class="text-center pt-3 d-flex justify-content-end
+          align-items-center flex-row">
+          <div class="d-flex justify-content-center align-items-center
+            flex-column mx-3">
+            <label for="">Presente</label>
+            <ion-icon name="happy-outline" (click)="onChangeAssistance(row,
+              assistanceValue.Present)" class="h3 text-success"
+              [class.active]="row.value == assistanceValue.Present"></ion-icon>
+          </div>
+
+          <div class="d-flex justify-content-center align-items-center
+            flex-column">
+            <label for="">Ausente</label>
+            <ion-icon name="sad-outline" (click)="onChangeAssistance(row,
+              assistanceValue.Absent)" [class.active]="row.value ==
+              assistanceValue.Absent" class="h3 mx-1 text-danger"></ion-icon>
+          </div>
+
+          <div class="d-flex justify-content-center align-items-center
+            flex-column mx-3">
+            <label for="">Excusa</label>
+            <ion-icon name="clipboard-outline" (click)="onChangeAssistance(row,
+              assistanceValue.AbsentNotificated)" [class.active]="row.value ==
+              assistanceValue.AbsentNotificated" class="h3 text-gray"></ion-icon>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <div class="col col-12 d-flex justify-content-end align-items-center">
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        <li *ngFor="let page of pages; let index" class="page-item active">
+          <a class="page-link" href="#">{{index}}</a>
+        </li>
+
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="col col-12 d-flex justify-content-end align-items-center pt-2 pb-3">
+    <button class="btn btn-primary border rounded m-0 px-1 d-flex justify-content-center align-items-center text-white" (click)="persist()">
+      <ion-icon name="add-circle-outline" class="h3 m-0 pointer-none"></ion-icon>
+      <label for="" class="px-2 pointer-none">Agregar Asistencia</label>
+    </button>
+  </div>
+</div>

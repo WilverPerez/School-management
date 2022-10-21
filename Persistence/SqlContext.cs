@@ -50,5 +50,9 @@ namespace Persistence
         /// </summary>
         public DbSet<Schedule> Schedule { get; set; }
 
+        /// <summary>
+        /// Set the schedule's table
+        /// </summary>
+        public DbSet<Assistance> Assistance { get; set; }
     }
 }

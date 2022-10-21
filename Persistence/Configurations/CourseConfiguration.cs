@@ -10,7 +10,7 @@ namespace Persistence.Configurations
     public sealed class CourseConfiguration : IEntityTypeConfiguration<Course>
     {
         /// <summary>
-        /// Configure relationships and restrictions of Bond Entity.
+        /// Configure relationships and restrictions of <see cref="Course"/> Entity.
         /// </summary>
         /// <param name="builder">An instance of <see cref="EntityTypeBuilder"/></param>
         public void Configure(EntityTypeBuilder<Course> builder)

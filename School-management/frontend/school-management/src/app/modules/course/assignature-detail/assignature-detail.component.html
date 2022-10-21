@@ -1,17 +1,21 @@
-<div class="col row">
+<div class="col row m-0 p-0">
 
-  <div id="container-parent" class="row m-0 d-flex justify-content-start align-items-start">
+  <div id="container-parent" class="row m-0 p-0 d-flex justify-content-start align-items-start">
     
     <label class="h4 mb-0 mt-3">Cursos > <label for="" class="h5">1ro B > Lengua Española</label></label>
 
-    <div class="col col-12 p-0 row m-0 d-flex justify-content-between align-items-start">
-      <div class="col col-8 px-3">
-        <app-table [configuration]="configuration"></app-table>
+    <app-calendar></app-calendar>
+
+    <div class="col col-12 d-flex justify-content-end align-items-center m-0 p-0 mt-2">
+      <div class="col col-auto form-check form-switch m-2 py-2 border rounded d-flex justify-content-end align-items-center">
+        <input class="form-check-input mx-1 h5" type="checkbox" id="assistanceSwitch" (click)="onChangeMode()" [checked]="assistenceMode">
+        <label *ngIf="assistenceMode" class="form-check-label mx-2 font-weight-bold h5 m-0" for="assistanceSwitch">Asistencia</label>
+        <label *ngIf="!assistenceMode" class="form-check-label mx-2 font-weight-bold h5 m-0" for="assistanceSwitch">Calificaciones</label>
       </div>
-      
-      <full-calendar class="col-4 calendar rounded shadow-sm border" [options]="calendarOptions"></full-calendar>
-  
     </div>
+    
+    <app-assistance *ngIf="assistenceMode" [configuration]="configuration"></app-assistance>
+    <app-score *ngIf="!assistenceMode" [configuration]="configuration"></app-score>
   </div>
 
 </div>

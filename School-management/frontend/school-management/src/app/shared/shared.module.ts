@@ -12,7 +12,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SwitchListComponent } from './switch-list/switch-list.component';
 import { TableComponent } from './table/table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CalendarComponent } from '../components/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
 
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+]);
 @NgModule({
   declarations: [
     SidebarComponent,
@@ -21,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     TableComponent,
     AssignementListComponent,
     StudentListComponent,
-    SwitchListComponent
+    SwitchListComponent,
+    CalendarComponent
   ],
   imports: [
     NgbModule,
@@ -30,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    FullCalendarModule
   ],
   exports: [
     SidebarComponent,
@@ -40,7 +48,8 @@ import { HttpClientModule } from '@angular/common/http';
     AssignementListComponent,
     StudentListComponent,
     SwitchListComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CalendarComponent
   ],
   providers: [],
   bootstrap: [],

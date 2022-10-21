@@ -44,5 +44,18 @@ namespace School_management.Controllers
 
             return Ok(studentsModel);
         }
+
+        /// <summary>
+        /// get all students
+        /// </summary>
+        [HttpGet("by-assignature")]
+        public async Task<IActionResult> GetByAssignature([FromQuery] Guid courseId, [FromQuery] Guid assignatureId)
+        {
+            IEnumerable<Core.Student.Student> students = Core.Student.Student.GetByAssignature(_studentRepository, courseId, assignatureId);
+
+            IEnumerable<Models.Student.StudentAssistanceList> studentsModel = students.Select(student => Models.Student.StudentAssistanceList.FromEntity(student));
+
+            return Ok(studentsModel);
+        }
     }
 }

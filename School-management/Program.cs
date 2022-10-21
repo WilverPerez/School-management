@@ -21,6 +21,7 @@ void AddServices()
     builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
     builder.Services.AddScoped<IAssignatureRepository, AssignatureRepository>();
     builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+    builder.Services.AddScoped<IAssistanceRepository, AssistanceRepository>();
 }
 
 // Inject context

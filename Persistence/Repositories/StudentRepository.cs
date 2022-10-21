@@ -55,5 +55,17 @@ namespace Persistence.Repositories
 
             return students.Select(student => student.ToEntity());
         }
+
+        /// <inheritdoc/>
+        IEnumerable<Student> IStudentRepository.GetByAssignature(Guid courseId, Guid assignatureId)
+        {
+            IEnumerable<Models.Student> students =  _context.Student
+                                                            .AsNoTracking()
+                                                            .Include(student => student.Assignatures)
+                                                            .ThenInclude(student => student.Courses)
+                                                            .Where(student => student.Assignatures.Any(assignature => assignature.Id == assignatureId && 
+                                                                                                       assignature.Courses.Any(course => course.Id == courseId)));
+            return students.Select(student => student.ToEntity());
+        }
     }
 }

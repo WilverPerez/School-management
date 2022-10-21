@@ -52,6 +52,7 @@ export class DetailComponent implements OnInit {
   private _loadStudents() {
     this.courseService.getById(this.route.snapshot.params['id']).subscribe(course => {
       this.configuration.data = course.students;
+      this.courseData = course;
       this.table.refresh();
     });
   }

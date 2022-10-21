@@ -21,5 +21,13 @@
         /// Get all students by list view
         /// </summary>
         public IEnumerable<Student.Student> GetList();
+
+        /// <summary>
+        /// Get all student by assignature
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <param name="assignatureId"></param>
+        /// <returns></returns>
+        IEnumerable<Student.Student> GetByAssignature(Guid courseId, Guid assignatureId);
     }
 }

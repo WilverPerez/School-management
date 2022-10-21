@@ -11,21 +11,6 @@ import { CourseService } from 'src/app/services/course.service';
 })
 export class HomeComponent implements OnInit {
 
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    validRange: {
-      start: this._startDate,
-      end: this._currentDate
-    },
-    contentHeight:100,
-    headerToolbar: {
-      start: '', 
-      center: 'title',
-      end: ''
-    },
-    locale: 'es'
-  };
-
   coursesToNow!: Array<CourseList>;
 
   constructor(private courseService: CourseService) { }
@@ -42,13 +27,5 @@ export class HomeComponent implements OnInit {
     this.courseService.getAll().subscribe(courses => {
       this.coursesToNow = courses;
     });
-  }
-
-  private get _currentDate() {
-    return moment('2022-10-22').add(1, 'days').format('YYYY-MM-DD');
-  }
-
-  private get _startDate() {
-    return moment('2022-10-22').subtract(6, 'days').format('YYYY-MM-DD');
   }
 }

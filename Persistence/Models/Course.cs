@@ -40,6 +40,11 @@ namespace Persistence.Models
         public IEnumerable<Schedule> Schedules { get; set; } = new List<Schedule>();
 
         /// <summary>
+        /// Represent the course's assistances
+        /// </summary>
+        public IEnumerable<Assistance> Assistances { get; set; } = new List<Assistance>();
+
+        /// <summary>
         /// Map the entity db to entity core
         /// </summary>
         /// <returns>An instance of <see cref="Core.Course.Course"/></returns>

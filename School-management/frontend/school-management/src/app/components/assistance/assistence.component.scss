@@ -1,0 +1,52 @@
+.search-icon {
+    right: 14px;
+    top: 4px;
+}
+
+* {
+    color: #424242;
+}
+
+
+::ng-deep {
+    ion-icon {
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 100%;
+        &.text-gray {
+            &.active {
+                background-color: var(--bs-gray);
+                color: white !important;
+            }
+
+            &:hover {
+                background-color: var(--bs-gray);
+                color: white !important;
+            }
+        }
+        
+        &.text-danger {
+            &.active {
+                background-color: rgba(var(--bs-danger-rgb));
+                color: white !important;
+            }
+
+            &:hover {
+                background-color: rgba(var(--bs-danger-rgb));
+                color: white !important;
+            }
+        }
+        
+        &.text-success {
+            &.active {
+                background-color: rgba(var(--bs-success-rgb));
+                color: white !important;
+            }
+            
+            &:hover {
+                background-color: rgba(var(--bs-success-rgb));
+                color: white !important;
+            }
+        }
+    }
+}

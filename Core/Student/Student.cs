@@ -55,7 +55,6 @@ namespace Core.Student
         /// </summary>
         public IEnumerable<Assignature.Assignature> Assignatures { get; }
 
-
         #endregion
 
         /// <summary>
@@ -74,6 +73,18 @@ namespace Core.Student
         public static IEnumerable<Student> GetAll(IStudentRepository studentRepository)
         {
             return studentRepository.GetList();
+        }
+
+        /// <summary>
+        /// Get all student by assignature
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        /// <param name="courseId">Represent the course's id</param>
+        /// <param name="assignatureId">Represent the assignature's id</param>
+        /// <returns>An <see cref="IEnumerable{Student}"/></returns>
+        public static IEnumerable<Student> GetByAssignature(IStudentRepository studentRepository, Guid courseId, Guid assignatureId)
+        {
+            return studentRepository.GetByAssignature(courseId, assignatureId);
         }
 
         /// <summary>

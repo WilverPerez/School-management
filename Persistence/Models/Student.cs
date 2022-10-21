@@ -52,7 +52,7 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the student's assistances
         /// </summary>
-        //public IEnumerable<Assistance> Assistances { get; set; }
+        public IEnumerable<Assistance> Assistances { get; set; } = new List<Assistance>();
 
         /// <summary>
         /// Represent the student's scores

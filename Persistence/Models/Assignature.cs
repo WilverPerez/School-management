@@ -27,12 +27,17 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the assignature's students
         /// </summary>
-        public IEnumerable<Student> Students { get; set; } = new List<Student>();
+        public List<Student> Students { get; set; } = new List<Student>();
 
         /// <summary>
-        /// Represent the creatiion date.
+        /// Represent the creation date.
         /// </summary>
         public DateTime CreationDate { get; set; } = DateTime.Now;
+
+        /// <summary>
+        /// Represent the assignature's assistances
+        /// </summary>
+        public IEnumerable<Assistance> Assistances { get; set; } = new List<Assistance>();
 
         /// <summary>
         /// Map the entity db to entity core

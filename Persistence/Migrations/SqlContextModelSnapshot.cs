@@ -100,6 +100,41 @@ namespace Persistence.Migrations
                     b.ToTable("Assignature");
                 });
 
+            modelBuilder.Entity("Persistence.Models.Assistance", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssignatureId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateIssue")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssignatureId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Assistance");
+                });
+
             modelBuilder.Entity("Persistence.Models.Course", b =>
                 {
                     b.Property<Guid>("Id")
@@ -173,37 +208,37 @@ namespace Persistence.Migrations
                         new
                         {
                             Id = new Guid("91a7ad32-70b7-4f3a-92d7-abdec43fe029"),
-                            CreationDate = new DateTime(2022, 10, 19, 20, 4, 5, 870, DateTimeKind.Local).AddTicks(672),
+                            CreationDate = new DateTime(2022, 10, 21, 5, 17, 39, 598, DateTimeKind.Local).AddTicks(2919),
                             Name = "Lunes"
                         },
                         new
                         {
                             Id = new Guid("4174672a-1fe7-4945-b579-bc95a12a81f9"),
-                            CreationDate = new DateTime(2022, 10, 19, 20, 4, 5, 870, DateTimeKind.Local).AddTicks(675),
+                            CreationDate = new DateTime(2022, 10, 21, 5, 17, 39, 598, DateTimeKind.Local).AddTicks(2922),
                             Name = "Martes"
                         },
                         new
                         {
                             Id = new Guid("91a7ad32-70b7-4f3a-92d7-abdec43fe028"),
-                            CreationDate = new DateTime(2022, 10, 19, 20, 4, 5, 870, DateTimeKind.Local).AddTicks(679),
+                            CreationDate = new DateTime(2022, 10, 21, 5, 17, 39, 598, DateTimeKind.Local).AddTicks(2924),
                             Name = "Miércoles"
                         },
                         new
                         {
                             Id = new Guid("d08b8e67-44cb-4ed9-ada8-cac86a6e2e42"),
-                            CreationDate = new DateTime(2022, 10, 19, 20, 4, 5, 870, DateTimeKind.Local).AddTicks(682),
+                            CreationDate = new DateTime(2022, 10, 21, 5, 17, 39, 598, DateTimeKind.Local).AddTicks(2926),
                             Name = "Jueves"
                         },
                         new
                         {
                             Id = new Guid("2251ef77-c607-4bca-ba50-70b62f33fe31"),
-                            CreationDate = new DateTime(2022, 10, 19, 20, 4, 5, 870, DateTimeKind.Local).AddTicks(685),
+                            CreationDate = new DateTime(2022, 10, 21, 5, 17, 39, 598, DateTimeKind.Local).AddTicks(2928),
                             Name = "Viernes"
                         },
                         new
                         {
                             Id = new Guid("b5c8c13d-8cb8-43f2-be1f-ebc5fb0772b5"),
-                            CreationDate = new DateTime(2022, 10, 19, 20, 4, 5, 870, DateTimeKind.Local).AddTicks(688),
+                            CreationDate = new DateTime(2022, 10, 21, 5, 17, 39, 598, DateTimeKind.Local).AddTicks(2929),
                             Name = "Sábado"
                         });
                 });
@@ -298,6 +333,33 @@ namespace Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Persistence.Models.Assistance", b =>
+                {
+                    b.HasOne("Persistence.Models.Assignature", "Assignature")
+                        .WithMany("Assistances")
+                        .HasForeignKey("AssignatureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Persistence.Models.Course", "Course")
+                        .WithMany("Assistances")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Persistence.Models.Student", "Student")
+                        .WithMany("Assistances")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Assignature");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Persistence.Models.Student", b =>
                 {
                     b.HasOne("Persistence.Models.Parent", "Parent")
@@ -309,9 +371,24 @@ namespace Persistence.Migrations
                     b.Navigation("Parent");
                 });
 
+            modelBuilder.Entity("Persistence.Models.Assignature", b =>
+                {
+                    b.Navigation("Assistances");
+                });
+
+            modelBuilder.Entity("Persistence.Models.Course", b =>
+                {
+                    b.Navigation("Assistances");
+                });
+
             modelBuilder.Entity("Persistence.Models.Parent", b =>
                 {
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("Persistence.Models.Student", b =>
+                {
+                    b.Navigation("Assistances");
                 });
 #pragma warning restore 612, 618
         }

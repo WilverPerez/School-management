@@ -4,6 +4,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { components, CourseRoutesModule } from './course.routing';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { RouterModule } from '@angular/router';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -14,7 +15,8 @@ FullCalendarModule.registerPlugins([
     CommonModule,
     SharedModule,
     CourseRoutesModule,
-    FullCalendarModule
+    FullCalendarModule,
+    RouterModule
   ],
   declarations: [...components],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
