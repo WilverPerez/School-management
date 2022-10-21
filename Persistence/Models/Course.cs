@@ -45,6 +45,11 @@ namespace Persistence.Models
         public IEnumerable<Assistance> Assistances { get; set; } = new List<Assistance>();
 
         /// <summary>
+        /// Represent the course's scores
+        /// </summary>
+        public IEnumerable<Score> Scores { get; set; }
+
+        /// <summary>
         /// Map the entity db to entity core
         /// </summary>
         /// <returns>An instance of <see cref="Core.Course.Course"/></returns>

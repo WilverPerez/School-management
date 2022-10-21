@@ -16,7 +16,7 @@
           <label class="font-size-large font-weight-bold">{{course.name}}</label>
           <small class="muted">{{course?.schedule}}</small>
         </app-card>
-        <app-card [add]="true"></app-card>
+        <app-card [add]="true" [routerLink]="'../course/create'"></app-card>
 
       </div>
 

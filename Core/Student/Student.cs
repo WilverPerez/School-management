@@ -76,6 +76,15 @@ namespace Core.Student
         }
 
         /// <summary>
+        /// get all students without course
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        public static IEnumerable<Student> GetAllWithoutCourse(IStudentRepository studentRepository)
+        {
+            return studentRepository.GetAllWithoutCourse();
+        }
+
+        /// <summary>
         /// Get all student by assignature
         /// </summary>
         /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>

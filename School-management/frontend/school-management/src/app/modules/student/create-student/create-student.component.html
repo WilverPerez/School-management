@@ -56,7 +56,7 @@
       <div id="parent-container" class="col col-12 row p-0 m-0 d-flex
         justify-content-between align-items-start flex-row pb-3 mt-3">
         <div class="col col-6 h-100">
-          <app-switch-list (onSelected)="onCourseSelectedChange($event)" [configuration]="coursesConfiguration"></app-switch-list>
+          <app-switch-list [multipleOption]="false" (onSelected)="onCourseSelectedChange($event)" [configuration]="coursesConfiguration"></app-switch-list>
         </div>
 
         <div class="col col-6 h-100">

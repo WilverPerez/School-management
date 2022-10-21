@@ -27,7 +27,11 @@
         /// </summary>
         /// <param name="courseId"></param>
         /// <param name="assignatureId"></param>
-        /// <returns></returns>
         IEnumerable<Student.Student> GetByAssignature(Guid courseId, Guid assignatureId);
+
+        /// <summary>
+        /// Get all students wo=ithout course
+        /// </summary>
+        IEnumerable<Student.Student> GetAllWithoutCourse();
     }
 }

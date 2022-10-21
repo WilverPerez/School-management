@@ -9,6 +9,7 @@ import { SwitchConfiguration, SwitchData } from 'src/app/models/switch-configura
 export class SwitchListComponent implements OnInit {
 
   @Input() configuration!: SwitchConfiguration<any>;
+  @Input() multipleOption: boolean = true;
   @Output() onSelected: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
@@ -17,7 +18,10 @@ export class SwitchListComponent implements OnInit {
   }
 
   onSelectedChange(item: SwitchData<any>) {
-    item.checked = !item.checked;
+    if(!this.multipleOption)
+      this.configuration.data.filter(data => data.checked = false);
+    
+    item.checked = true;
     this.onSelected.emit(item);
   }
 }

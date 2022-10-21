@@ -19,6 +19,10 @@ export class StudentService {
     return this.httpClient.get<Array<Student>>(this._baseUrl);
   }
   
+  public getAllWithoutCourse(): Observable<Array<Student>> {
+    return this.httpClient.get<Array<Student>>(this._baseUrl + '/without-course');
+  }
+  
   public persist(student: Student): Observable<boolean> {
     return this.httpClient.post<boolean>(this._baseUrl, student);
   }

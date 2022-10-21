@@ -2,8 +2,11 @@
 
   <div id="container-parent" class="row m-0 p-0 d-flex justify-content-start align-items-start">
     
-    <label class="h4 mb-0 mt-3">Cursos > <label for="" class="h5">1ro B > Lengua Española</label></label>
-
+    <app-breadcrumb>
+      <li class="breadcrumb-item"><a class="h3" routerLink="/course">Cursos</a></li>
+      <li class="breadcrumb-item"><a class="h3">Lengua Española</a></li>
+    </app-breadcrumb>
+    
     <app-calendar></app-calendar>
 
     <div class="col col-12 d-flex justify-content-end align-items-center m-0 p-0 mt-2">

@@ -57,7 +57,7 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the student's scores
         /// </summary>
-        //public IEnumerable<Score> Scores { get; set; }
+        public IEnumerable<Score> Scores { get; set; }
 
         /// <summary>
         /// Map the entity db to entity core

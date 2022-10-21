@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Dictionary } from '@fullcalendar/angular';
 import { Student } from 'src/app/models/student.model';
 import { TableConfiguration } from 'src/app/models/table-configuration.model';
 import { StudentService } from 'src/app/services/student.service';
@@ -34,6 +35,10 @@ export class ScoreComponent implements OnInit {
     this.courseId = this.route.snapshot.params['id'];
     this.assignatureId = this.route.snapshot.params['assignatureId'];
     this._initializeTable();
+    this._initializeMap();
+  }
+
+  private _initializeMap() {
   }
 
   filter() {

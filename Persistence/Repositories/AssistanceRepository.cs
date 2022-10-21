@@ -22,8 +22,6 @@ namespace Persistence.Repositories
         /// <inheritdoc/>
         IEnumerable<Assistance> IAssistanceRepository.GetByDate(DateTime dateIssue, Guid assignatureId, Guid courseId)
         {
-            var eso = dateIssue.Date.ToString("yyyy-MM-dd");
-
             IEnumerable<Models.Assistance> assignatures = _context.Assistance
                                                                    .AsNoTracking()
                                                                    .Include(assistance => assistance.Student)

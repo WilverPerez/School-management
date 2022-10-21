@@ -35,28 +35,20 @@ namespace Persistence.Repositories
         /// <inheritdoc/>
         async Task ICourseRepository.Persist(Course course)
         {
-            try
+            Models.Course courseEntity = Models.Course.FromEntity(course);
+
+            courseEntity.Assignatures = _context.Assignature.Where(asignature => courseEntity.Assignatures.Select(assignature => assignature.Id).Contains(asignature.Id)).ToList();
+            courseEntity.Schedules = _context.Schedule.Where(course => courseEntity.Schedules.Select(course => course.Id).Contains(course.Id)).ToList();
+            courseEntity.Students = _context.Student.Where(course => courseEntity.Students.Select(course => course.Id).Contains(course.Id)).ToList();
+
+            foreach (var assignature in courseEntity.Assignatures)
             {
-                Models.Course courseEntity = Models.Course.FromEntity(course);
-
-                courseEntity.Assignatures = _context.Assignature.Where(asignature => courseEntity.Assignatures.Select(assignature => assignature.Id).Contains(asignature.Id)).ToList();
-                courseEntity.Schedules = _context.Schedule.Where(course => courseEntity.Schedules.Select(course => course.Id).Contains(course.Id)).ToList();
-                courseEntity.Students = _context.Student.Where(course => courseEntity.Students.Select(course => course.Id).Contains(course.Id)).ToList();
-
-                foreach (var assignature in courseEntity.Assignatures)
-                {
-                    assignature.Students.AddRange(courseEntity.Students);
-                }
-
-                await _context.Course.AddAsync(courseEntity);
-
-                await _context.SaveChangesAsync();
+                assignature.Students.AddRange(courseEntity.Students);
             }
-            catch (Exception ex)
-            {
 
-                throw;
-            }
+            await _context.Course.AddAsync(courseEntity);
+
+            await _context.SaveChangesAsync();
         }
 
         /// <inheritdoc/>

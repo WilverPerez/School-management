@@ -47,6 +47,17 @@ namespace Persistence.Repositories
         }
 
         /// <inheritdoc/>
+        IEnumerable<Student> IStudentRepository.GetAllWithoutCourse()
+        {
+            IEnumerable<Models.Student> students = _context.Student
+                                                            .AsNoTracking()
+                                                            .Include(student => student.Courses)
+                                                            .Where(student => !student.Courses.Any());
+
+            return students.Select(student => student.ToEntity());
+        }
+
+        /// <inheritdoc/>
         IEnumerable<Student> IStudentRepository.GetList()
         {
             IEnumerable<Models.Student> students = _context.Student

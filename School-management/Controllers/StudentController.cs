@@ -46,6 +46,19 @@ namespace School_management.Controllers
         }
 
         /// <summary>
+        /// get all students without course
+        /// </summary>
+        [HttpGet("without-course")]
+        public async Task<IActionResult> GetAllWithoutCourse()
+        {
+            IEnumerable<Core.Student.Student> students = Core.Student.Student.GetAllWithoutCourse(_studentRepository);
+
+            IEnumerable<Models.Student.StudentModel> studentsModel = students.Select(student => Models.Student.StudentModel.FromEntity(student));
+
+            return Ok(studentsModel);
+        }
+
+        /// <summary>
         /// get all students
         /// </summary>
         [HttpGet("by-assignature")]

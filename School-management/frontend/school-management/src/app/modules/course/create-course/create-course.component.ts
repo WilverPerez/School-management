@@ -79,7 +79,7 @@ export class CreateCourseComponent implements OnInit {
   }
 
   private _getAllStudents() {
-    this.studentService.getAll().subscribe(students => {
+    this.studentService.getAllWithoutCourse().subscribe(students => {
       this.studentConfiguration.data = students.map<SwitchData<Student>>(student => {
         return {
           id: student.id,

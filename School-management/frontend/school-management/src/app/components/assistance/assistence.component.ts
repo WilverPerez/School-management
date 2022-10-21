@@ -56,19 +56,8 @@ export class AssistanceComponent implements OnInit {
     // })
   }
 
-  // private _loadStudent() {
-  //   this.studentService.getByAssignatureIntoCourse(this.courseId, this.assignatureId).subscribe({
-  //     next: student => {
-  //       this.configuration.data = student;
-  //       this.hasLoaded = true;  
-  //       this.refresh();  
-  //     },
-  //     error: (error) => console.log(error)
-  //   })
-  // }
-
   private _loadStudent() {
-    this.assistanceService.getByAssignatureByDate('2022-10-21', this.courseId, this.assignatureId).subscribe({
+    this.studentService.getByAssignatureIntoCourse(this.courseId, this.assignatureId).subscribe({
       next: student => {
         this.configuration.data = student;
         this.hasLoaded = true;  
@@ -77,6 +66,17 @@ export class AssistanceComponent implements OnInit {
       error: (error) => console.log(error)
     })
   }
+
+  // private _loadStudent() {
+  //   this.assistanceService.getByAssignatureByDate('2022-10-21', this.courseId, this.assignatureId).subscribe({
+  //     next: student => {
+  //       this.configuration.data = student;
+  //       this.hasLoaded = true;  
+  //       this.refresh();  
+  //     },
+  //     error: (error) => console.log(error)
+  //   })
+  // }
 
   public refresh() {
     this._bootstrap();
