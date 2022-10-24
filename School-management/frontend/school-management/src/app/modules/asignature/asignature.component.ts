@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Course } from 'src/app/models/course.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AssignatureList } from 'src/app/models/assignature-list.model';
+import { Assignature } from 'src/app/models/assignature.model';
 import { TableConfiguration } from 'src/app/models/table-configuration.model';
+import { AssignatureService } from 'src/app/services/assignature.service';
+import { TableComponent } from 'src/app/shared/table/table.component';
 
 @Component({
   selector: 'app-asignature',
@@ -9,7 +12,7 @@ import { TableConfiguration } from 'src/app/models/table-configuration.model';
 })
 export class AsignatureComponent implements OnInit {
 
-  configuration: TableConfiguration<Course> = {
+  configuration: TableConfiguration<AssignatureList> = {
     title: 'Asignaturas',
     icon: 'school',
     headers: [
@@ -19,49 +22,30 @@ export class AsignatureComponent implements OnInit {
         primary: true
       },
       {
-        label: 'schedule',
-        value: (item) => item.schedule
-      },
-      {
-        label: 'studentCount',
-        value: (item) => item.studentCount + ' Students'
-      },
-      {
-        label: 'asignatureCount',
-        value: (item) => item.asignatureCount + ' Asignatures'
+        label: 'courseCount',
+        value: (item) => item.courseCount + ' Cursos',
+        primary: false
       }
     ],
-    data: [
-      {
-        name: '2do B',
-        schedule: 'Lun - Jue',
-        studentCount: 20,
-        asignatureCount: 4
-      },
-      {
-        name: '2do A',
-        schedule: 'Lun ',
-        studentCount: 2,
-        asignatureCount: 1
-      },
-      {
-        name: '2do B',
-        schedule: 'Lun - Jue',
-        studentCount: 20,
-        asignatureCount: 4
-      },
-      {
-        name: '2do B',
-        schedule: 'Lun - Jue',
-        studentCount: 20,
-        asignatureCount: 4
-      }
-    ]
+    data: []
   }
 
-  constructor() { }
+  @ViewChild('table') table!: TableComponent;
+
+  constructor(private assignatureService: AssignatureService) { }
 
   ngOnInit() {
+    this._bootstrap();
   }
 
+  private _bootstrap() {
+    this._loadAssignatures();
+  }
+
+  private _loadAssignatures() {
+    this.assignatureService.getAll().subscribe(assignatures => {
+      this.configuration.data = assignatures;
+      this.table.refresh();
+    });
+  }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/angular';
-import * as moment from 'moment';
+import { StudentAssistance } from 'src/app/models/student-assistance.model';
 import { TableConfiguration } from 'src/app/models/table-configuration.model';
 
 @Component({
@@ -9,73 +8,26 @@ import { TableConfiguration } from 'src/app/models/table-configuration.model';
   styleUrls: ['./assignature-detail.component.scss']
 })
 export class AssignatureDetailComponent implements OnInit {
-
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    // validRange: {
-    //   start: this._startDate,
-    //   end: this._currentDate
-    // },
-    contentHeight: 100,
-    handleWindowResize: true,
-    aspectRatio: 1,
-    expandRows: true,
-    headerToolbar: {
-      start: '', 
-      center: 'title',
-      end: ''
-    },
-    locale: 'es'
-  };
   
-  configuration: TableConfiguration<any> = {
+  configuration: TableConfiguration<StudentAssistance> = {
     title: 'Alumnos',
     icon: 'school',
     headers: [
       {
         label: 'name',
-        value: (item) => item.name,
+        value: (item) => item.fullName,
         primary: true
-      },
-      {
-        label: 'tutor',
-        value: (item) => item.tutor + ' (Tutor / a)'
-      },
-      {
-        label: 'linked',
-        value: (item) => item.linked + ' (Vinculo)'
       }
     ],
-    data: [
-      {
-        name: 'Anthony Perez',
-        tutor: 'Faustina Romero',
-        linked: 'Madre'
-      },
-      {
-        name: 'Alejandro Garcia',
-        tutor: 'Faustina Romero',
-        linked: 'Madre'
-      },
-      {
-        name: 'Wilson Perez',
-        tutor: 'Faustina Romero',
-        linked: 'Madre'
-      }
-    ]
+    data: []
   }
+  assistenceMode = false;
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  private get _currentDate() {
-    return moment('2022-10-22').add(1, 'days').format('YYYY-MM-DD');
+  public onChangeMode() {
+    this.assistenceMode = !this.assistenceMode;
   }
-
-  private get _startDate() {
-    return moment('2022-10-22').subtract(6, 'days').format('YYYY-MM-DD');
-  }
-
 }

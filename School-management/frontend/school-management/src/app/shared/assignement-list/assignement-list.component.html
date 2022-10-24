@@ -10,33 +10,14 @@
       </thead>
 
       <tbody>
-        <tr class="my-3">
+        <tr class="my-3" *ngFor="let assignature of assignatureList">
           <td>
             <label class="avatar"><ion-icon name="bookmarks-outline"></ion-icon></label>
           </td>
           <td>
-            <label class="mt-2">Lengua española</label>
+            <label class="mt-2">{{assignature.name}}</label>
           </td>
         </tr>
-
-        <tr class="my-3">
-          <td>
-            <label class="avatar"><ion-icon name="bookmarks-outline"></ion-icon></label>
-          </td>
-          <td>
-            <label class="mt-2">Matemáticas</label>
-          </td>
-        </tr>
-
-        <tr class="my-3">
-          <td>
-            <label class="avatar"><ion-icon name="bookmarks-outline"></ion-icon></label>
-          </td>
-          <td>
-            <label class="mt-2">Sociales</label>
-          </td>
-        </tr>
-
       </tbody>
     </table>
 
