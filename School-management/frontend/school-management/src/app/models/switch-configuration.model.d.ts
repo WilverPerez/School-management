@@ -7,4 +7,5 @@ export interface SwitchData<T> {
     id: string;
     label: string;
     checked: boolean;
+    toEntity: () => T;
 }

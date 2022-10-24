@@ -1,27 +1,31 @@
 <div class="col row">
 
-  <div id="container-parent" class="d-flex justify-content-between flex-column align-items-start">
-    
+  <div id="container-parent" class="d-flex justify-content-between flex-column
+    align-items-start">
+
     <div class="header col col-12">
-      <label class="h4 mb-0 mt-3">Cursos > <label for="" class="h5">1ro B</label></label>
-      <hr class="">
+      <app-breadcrumb>
+        <li class="breadcrumb-item"><a class="h3" routerLink="/course">Cursos</a></li>
+        <li class="breadcrumb-item"><a class="h3">{{courseData?.name}}</a></li>
+      </app-breadcrumb>
 
       <label class="h5 mb-0 mt-3">Asignaturas</label>
       <hr class="w-100">
-      
+
       <div class="d-flex flex-wrap">
 
-        <app-card></app-card>
-        <app-card></app-card>
-        <app-card></app-card>
-        <app-card [add]="true"></app-card>
-
+        <app-card *ngFor="let assignature of courseData?.assignatures"
+          [routerLink]="'assignature/' + assignature.id">
+          <label class="font-weight-bold font-size-large">Asignatura</label>
+          <small class="">{{assignature.name}}</small>
+        </app-card>
+        <app-card [add]="true" routerLink="../../../assignature/create"></app-card>
       </div>
 
     </div>
 
     <div id="container" class="col col-12 p-0 m-0">
-      <app-table [configuration]="configuration"></app-table>
+      <app-table #table [configuration]="configuration"></app-table>
     </div>
 
   </div>

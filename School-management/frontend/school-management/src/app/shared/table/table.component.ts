@@ -7,16 +7,21 @@ import { TableConfiguration } from 'src/app/models/table-configuration.model';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-
+  
   private _totalRows = 0;
   private _maxPerPage = 10;
   pages:Array<number> = [];
   search: string = '';
   @Input() configuration!: TableConfiguration<any>;
   data: any;
+
   constructor() {}
 
   ngOnInit(): void { 
+    this._bootstrap();
+  }
+
+  private _bootstrap() {
     if(!this.configuration) return;
     this.data = this.configuration.data;
     this._totalRows = this.configuration.data.length;
@@ -38,5 +43,9 @@ export class TableComponent implements OnInit {
       
     //   return (row as string).toString().indexOf(this.search) > -1;
     // })
+  }
+
+  public refresh() {
+    this._bootstrap();
   }
 }

@@ -10,71 +10,12 @@
       </thead>
 
       <tbody>
-        <tr class="my-3">
+        <tr class="my-3" *ngFor="let student of studentList">
           <td>
             <label class="avatar">PM</label>
           </td>
           <td>
-            <label class="mt-2">Anthony Pérez</label>
-          </td>
-          <td>
-            <label class="mt-2">2 Courses</label>
-          </td>
-        </tr>
-        <tr class="my-3">
-          <td>
-            <label class="avatar">PM</label>
-          </td>
-          <td>
-            <label class="mt-2">Anthony Pérez</label>
-          </td>
-          <td>
-            <label class="mt-2">2 Courses</label>
-          </td>
-        </tr>
-
-        <tr class="my-3">
-          <td>
-            <label class="avatar">PM</label>
-          </td>
-          <td>
-            <label class="mt-2">Anthony Pérez</label>
-          </td>
-          <td>
-            <label class="mt-2">2 Courses</label>
-          </td>
-        </tr>
-
-        <tr class="my-3">
-          <td>
-            <label class="avatar">PM</label>
-          </td>
-          <td>
-            <label class="mt-2">Anthony Pérez</label>
-          </td>
-          <td>
-            <label class="mt-2">2 Courses</label>
-          </td>
-        </tr>
-
-        <tr class="my-3">
-          <td>
-            <label class="avatar">PM</label>
-          </td>
-          <td>
-            <label class="mt-2">Anthony Pérez</label>
-          </td>
-          <td>
-            <label class="mt-2">2 Courses</label>
-          </td>
-        </tr>
-
-        <tr class="my-3">
-          <td>
-            <label class="avatar">PM</label>
-          </td>
-          <td>
-            <label class="mt-2">Anthony Pérez</label>
+            <label class="mt-2">{{student.fullName}}</label>
           </td>
           <td>
             <label class="mt-2">2 Courses</label>

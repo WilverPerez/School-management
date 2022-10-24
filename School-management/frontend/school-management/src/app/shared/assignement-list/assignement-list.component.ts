@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AssignatureList } from 'src/app/models/assignature-list.model';
+import { AssignatureService } from 'src/app/services/assignature.service';
 
 @Component({
   selector: 'app-assignement-list',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssignementListComponent implements OnInit {
 
-  constructor() { }
+  assignatureList!: Array<AssignatureList>;
+
+  constructor(private assignatureService: AssignatureService) { }
 
   ngOnInit() {
+    this._bootstrap();
+  }
+
+  private _bootstrap() {
+    this._loadAssignatures();
+  }
+
+  private _loadAssignatures() {
+    this.assignatureService.getAll().subscribe(assignatures => {
+      this.assignatureList = assignatures;
+      console.log(assignatures);
+    });
   }
 
 }

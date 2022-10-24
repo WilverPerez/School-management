@@ -28,6 +28,12 @@ export class SidebarComponent implements OnInit {
       path: 'assignature'
     },
     {
+      label: 'Calificaciones',
+      actived: false,
+      icon: 'school-outline',
+      path: 'score'
+    },
+    {
       label: 'Alumnos',
       actived: false,
       icon: 'people-outline',

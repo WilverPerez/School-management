@@ -4,25 +4,25 @@
   </div>
 
   <div class="body border rounded mb-3">
-    <form action="">
+    <form [formGroup]="formGroup">
       <div class="form-group col col-12 py-4 px-2">
-        <label for="" class="form-label h5">Title</label>
-        <input type="text" class="form-control" placeholder="Title">
+        <label for="" class="form-label h5">Nombre del curso</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Nombre del curso">
       </div>
 
       <div id="parent-container" class="col col-12 row p-0 m-0 d-flex justify-content-between align-items-start flex-row pb-3">
         <div class="col col-6 h-100 overflow-auto">
-          <app-switch-list [configuration]="assignatureConfiguration"></app-switch-list>
-          <app-switch-list [configuration]="scheduleConfiguration"></app-switch-list>
+          <app-switch-list (onSelected)="onSelectAssignatures($event)" [configuration]="assignatureConfiguration"></app-switch-list>
+          <app-switch-list (onSelected)="onSelectSchedules($event)" [configuration]="scheduleConfiguration"></app-switch-list>
         </div>
   
         <div class="col col-6 h-100">
-          <app-switch-list [configuration]="studentConfiguration"></app-switch-list>
+          <app-switch-list (onSelected)="onSelectStudents($event)" [configuration]="studentConfiguration"></app-switch-list>
         </div>
       </div>
 
       <div class="col col-12 d-flex justify-content-end align-items-center pt-2 px-3 pb-3">
-        <button class="btn btn-primary border rounded m-0 px-1 d-flex justify-content-center align-items-center">
+        <button class="btn btn-primary border rounded m-0 px-1 d-flex justify-content-center align-items-center" (click)="persist()">
           <ion-icon name="add-circle-outline" class="h3 m-0 pointer-none"></ion-icon>
           <label for="" class="px-2 pointer-none">Agregar curso</label>
         </button>

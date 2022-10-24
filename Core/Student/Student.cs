@@ -1,4 +1,6 @@
-﻿namespace Core.Student
+﻿using Core.Contracts;
+
+namespace Core.Student
 {
     /// <summary>
     /// Represent the student entity logic manager
@@ -14,6 +16,7 @@
             Parent = builder.ParentOption;
             Courses = builder.CoursesOption;
             Assignatures = builder.AssignaturesOption;
+            Scores = builder.ScoreOption;
         }
 
         #region props
@@ -46,33 +49,81 @@
         /// <summary>
         /// Represent a list of courses
         /// </summary>
-        public IEnumerable<string> Courses { get; }
+        public IEnumerable<Course.Course> Courses { get; }
 
         /// <summary>
         /// Represent a list of assignatures
         /// </summary>
-        public IEnumerable<string> Assignatures { get; }
+        public IEnumerable<Assignature.Assignature> Assignatures { get; }
 
+        /// <summary>
+        /// Represent a list of scores
+        /// </summary>
+        public IEnumerable<Score.Score> Scores { get; }
 
         #endregion
 
-        public void Persist()
+        /// <summary>
+        /// retrieve a student into db
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        public async Task Persist(IStudentRepository studentRepository)
         {
+            await studentRepository.Persist(this);
+        }
 
+        /// <summary>
+        /// get all students
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        public static IEnumerable<Student> GetAll(IStudentRepository studentRepository)
+        {
+            return studentRepository.GetList();
+        }
+
+        /// <summary>
+        /// get all students without course
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        public static IEnumerable<Student> GetAllWithoutCourse(IStudentRepository studentRepository)
+        {
+            return studentRepository.GetAllWithoutCourse();
+        }
+
+        /// <summary>
+        /// Get all student by assignature
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        /// <param name="courseId">Represent the course's id</param>
+        /// <param name="assignatureId">Represent the assignature's id</param>
+        /// <returns>An <see cref="IEnumerable{Student}"/></returns>
+        public static IEnumerable<Student> GetByAssignature(IStudentRepository studentRepository, Guid courseId, Guid assignatureId)
+        {
+            return studentRepository.GetByAssignature(courseId, assignatureId);
+        }
+
+        /// <summary>
+        /// Get an student with score by assiganture
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        /// <returns>An instance of <see cref="Student"/></returns>
+        public async Task<Student> GetWithScore(IStudentRepository studentRepository)
+        {
+            return await studentRepository.GetWithScore(this);
         }
 
         /// <summary>
         /// Class to build an <see cref="Student"/> instance
         /// </summary>
         public class Builder {
-
             internal Guid IdOption { get; set; }
-            internal string NameOption { get; set; } = string.Empty;
-            internal string LastNameOption { get; set; } = string.Empty;
+            internal string NameOption { get; set; }
+            internal string LastNameOption { get; set; }
             internal DateTime DateOfBornOption { get; set; }
-            internal Parent ParentOption { get; set; } = new Parent();
-            internal IEnumerable<string> CoursesOption { get; set; } = new List<string>();
-            internal IEnumerable<string> AssignaturesOption { get; set; } = new List<string>();
+            internal Parent ParentOption { get; set; }
+            internal IEnumerable<Course.Course> CoursesOption { get; set; }
+            internal IEnumerable<Assignature.Assignature> AssignaturesOption { get; set; }
+            internal IEnumerable<Score.Score> ScoreOption { get; set; }
 
             /// <summary>
             /// Implement an instance of <see cref="Builder"/>
@@ -117,14 +168,20 @@
             /// <summary>
             /// Set the <see cref="Courses"/> property
             /// </summary>
-            /// <param name="courses"><see cref="IEnumerable{string}"/></param>
-            public Builder WithCourses(IEnumerable<string> courses) => SetProperty(() => CoursesOption = courses);
+            /// <param name="courses"><see cref="IEnumerable{Course.Course}"/></param>
+            public Builder WithCourses(IEnumerable<Course.Course> courses) => SetProperty(() => CoursesOption = courses);
 
             /// <summary>
             /// Set the <see cref="Assignatures"/> property
             /// </summary>
             /// <param name="assignatures"><see cref="IEnumerable{string}"/></param>
-            public Builder WithAssignatures(IEnumerable<string> assignatures) => SetProperty(() => AssignaturesOption = assignatures);
+            public Builder WithAssignatures(IEnumerable<Assignature.Assignature> assignatures) => SetProperty(() => AssignaturesOption = assignatures);
+
+            /// <summary>
+            /// Set the <see cref="Assignatures"/> property
+            /// </summary>
+            /// <param name="scores"><see cref="IEnumerable{Score.Score}"/></param>
+            public Builder WithScore(IEnumerable<Score.Score> scores) => SetProperty(() => ScoreOption = scores);
 
             #endregion
 
