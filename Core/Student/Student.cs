@@ -16,6 +16,7 @@ namespace Core.Student
             Parent = builder.ParentOption;
             Courses = builder.CoursesOption;
             Assignatures = builder.AssignaturesOption;
+            Scores = builder.ScoreOption;
         }
 
         #region props
@@ -54,6 +55,11 @@ namespace Core.Student
         /// Represent a list of assignatures
         /// </summary>
         public IEnumerable<Assignature.Assignature> Assignatures { get; }
+
+        /// <summary>
+        /// Represent a list of scores
+        /// </summary>
+        public IEnumerable<Score.Score> Scores { get; }
 
         #endregion
 
@@ -97,6 +103,16 @@ namespace Core.Student
         }
 
         /// <summary>
+        /// Get an student with score by assiganture
+        /// </summary>
+        /// <param name="studentRepository">An instance of <see cref="IStudentRepository"/></param>
+        /// <returns>An instance of <see cref="Student"/></returns>
+        public async Task<Student> GetWithScore(IStudentRepository studentRepository)
+        {
+            return await studentRepository.GetWithScore(this);
+        }
+
+        /// <summary>
         /// Class to build an <see cref="Student"/> instance
         /// </summary>
         public class Builder {
@@ -107,6 +123,7 @@ namespace Core.Student
             internal Parent ParentOption { get; set; }
             internal IEnumerable<Course.Course> CoursesOption { get; set; }
             internal IEnumerable<Assignature.Assignature> AssignaturesOption { get; set; }
+            internal IEnumerable<Score.Score> ScoreOption { get; set; }
 
             /// <summary>
             /// Implement an instance of <see cref="Builder"/>
@@ -159,6 +176,12 @@ namespace Core.Student
             /// </summary>
             /// <param name="assignatures"><see cref="IEnumerable{string}"/></param>
             public Builder WithAssignatures(IEnumerable<Assignature.Assignature> assignatures) => SetProperty(() => AssignaturesOption = assignatures);
+
+            /// <summary>
+            /// Set the <see cref="Assignatures"/> property
+            /// </summary>
+            /// <param name="scores"><see cref="IEnumerable{Score.Score}"/></param>
+            public Builder WithScore(IEnumerable<Score.Score> scores) => SetProperty(() => ScoreOption = scores);
 
             #endregion
 

@@ -70,5 +70,22 @@ namespace School_management.Controllers
 
             return Ok(studentsModel);
         }
+
+        /// <summary>
+        /// Get student by score
+        /// </summary>
+        [HttpGet("by-score")]
+        public async Task<IActionResult> GetByScore([FromQuery] Guid studentId)
+        {
+            Core.Student.Student student = new Core.Student.Student.Builder()
+                                                                   .WithId(studentId)
+                                                                   .Build();
+
+            student = await student.GetWithScore(_studentRepository);
+
+            Models.Student.StudentScoreModel studentModel = Models.Student.StudentScoreModel.FromEntity(student);
+
+            return Ok(studentModel);
+        }
     }
 }

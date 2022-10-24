@@ -33,11 +33,11 @@ export class CalendarComponent implements OnInit {
   }
   
   private get _currentDate() {
-    return moment('2022-10-22').add(1, 'days').format('YYYY-MM-DD');
+    return moment('2022-10-29').add(1, 'days').format('YYYY-MM-DD');
   }
 
   private get _startDate() {
-    return moment('2022-10-22').subtract(6, 'days').format('YYYY-MM-DD');
+    return moment('2022-10-29').subtract(6, 'days').format('YYYY-MM-DD');
   }
 
 }

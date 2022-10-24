@@ -33,5 +33,12 @@
         /// Get all students wo=ithout course
         /// </summary>
         IEnumerable<Student.Student> GetAllWithoutCourse();
+
+        /// <summary>
+        /// Get an student with score by assiganture
+        /// </summary>
+        /// <param name="student">An instance of <see cref="Student.Student"/></param>
+        /// <returns>An instance of <see cref="Student.Student"/></returns>
+        Task<Student.Student> GetWithScore(Student.Student student);
     }
 }

@@ -68,5 +68,21 @@ namespace School_management.Models.Score
                                                          .Build();
             return score;
         }
+
+        /// <summary>
+        /// Map to <see cref="Models.Score.ScoreModel"/>
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns>An instance of <see cref="ScoreModel"/></returns>
+        internal static ScoreModel FromEntity(Core.Score.Score score)
+        {
+            ScoreModel scoreModel = new ScoreModel
+            {
+                Id = score.Id,
+                Value = score.Value,
+            };
+
+            return scoreModel;
+        }
     }
 }

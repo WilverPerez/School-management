@@ -57,7 +57,7 @@ namespace Persistence.Models
         /// <summary>
         /// Represent the student's scores
         /// </summary>
-        public IEnumerable<Score> Scores { get; set; }
+        public IEnumerable<Score> Scores { get; set; } = new List<Score>();
 
         /// <summary>
         /// Map the entity db to entity core
@@ -71,6 +71,7 @@ namespace Persistence.Models
                                                                    .WithLastName(LastName)
                                                                    .WithCourses(Courses.Select(course => course.ToEntity()))
                                                                    .WithAssignatures(Assignatures.Select(assignature => assignature.ToEntity()))
+                                                                   .WithScore(Scores.Select(score => score.ToEntity()))
                                                                    .WithParent(Parent.ToEntity())
                                                                    .Build();
             return student;

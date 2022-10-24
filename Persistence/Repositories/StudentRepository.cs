@@ -78,5 +78,17 @@ namespace Persistence.Repositories
                                                                                                        assignature.Courses.Any(course => course.Id == courseId)));
             return students.Select(student => student.ToEntity());
         }
+
+        /// <inheritdoc/>
+        async Task<Student> IStudentRepository.GetWithScore(Student studentEntity)
+        {
+            Models.Student student = await _context.Student
+                                                   .AsNoTracking()
+                                                   .Include(student => student.Assignatures)
+                                                   .Include(student => student.Scores)
+                                                   .FirstOrDefaultAsync(student => student.Id == studentEntity.Id);
+
+            return student.ToEntity();
+        }
     }
 }
